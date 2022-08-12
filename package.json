@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build --base=/paper-assistant/",
     "preview": "vite preview"
   },
   "dependencies": {
