@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@laorange/copyright-footer": "^0.1.4",
     "vue": "^3.2.37",
     "vue-clipboard3": "^2.0.0",
     "vue-router": "4"

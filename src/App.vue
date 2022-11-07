@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ArticleCopyTool from "./components/ArticleCopyTool.vue";
-import CopyrightDiv from "./components/CopyrightDiv.vue";
+import CopyrightDiv from "@laorange/copyright-footer/src/components/CopyrightFooter.vue";
 
 </script>
 
