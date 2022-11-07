@@ -8,8 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ArticleCopyTool: typeof import('./src/components/ArticleCopyTool.vue')['default']
-    CopyrightDiv: typeof import('./src/components/CopyrightDiv.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    CopyrightFooter: typeof import('./src/components/CopyrightFooter.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NGi: typeof import('naive-ui')['NGi']
     NGrid: typeof import('naive-ui')['NGrid']

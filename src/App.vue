@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ArticleCopyTool from "./components/ArticleCopyTool.vue";
-import CopyrightDiv from "@laorange/copyright-footer/src/components/CopyrightFooter.vue";
-
+import CopyrightFooter from "./components/CopyrightFooter.vue";
+import packageJson from "../package.json";
 </script>
 
 <template>
@@ -10,13 +10,13 @@ import CopyrightDiv from "@laorange/copyright-footer/src/components/CopyrightFoo
       <ArticleCopyTool/>
     </main>
 
-    <CopyrightDiv project-url="https://github.com/laorange/paper-assistant"/>
+    <CopyrightFooter project-url="https://github.com/laorange/paper-assistant" :version="packageJson.version"/>
   </n-message-provider>
 </template>
 
 <style>
 main {
   margin: 20px 10vw;
-  min-height: calc(90vh - 70px);
+  min-height: calc(90vh - 100px);
 }
 </style>
