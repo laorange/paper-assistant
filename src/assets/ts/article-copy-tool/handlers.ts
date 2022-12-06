@@ -7,6 +7,39 @@ export interface TextHandlers {
 }
 
 export const textHandlers: TextHandlers = {
+    deleteMultipleNewlines: {
+        activate: true,
+        description: "删除重复的换行符",
+        executor: (text: string) => text.replace(/[\f\r\t\n]+/g, "\n"),
+    },
+
+    /** 替换换行符为空格 (参考：https://blog.csdn.net/lfod1997/article/details/121095287) */
+    replaceNewlinesWithSpaces: {
+        activate: true,
+        description: "将换行符替换为空格",
+        executor: (text: string) => text.replace(/[\f\r\t\n]/g, " "),
+    },
+
+    replaceMultipleSpacesWithASingleSpace: {
+        activate: true,
+        description: "删除重复的空格",
+        executor: (text: string) => text.replace(/ +/g, " "),
+    },
+
+    removeSpacesBetweenNonEnglishLetters: {
+        activate: true,
+        description: "删除非英文字母间的空格",
+        executor: (text: string) => text
+            .replace(/([^A-Za-z"':]) +/g, "$1")
+            .replace(/ +([^A-Za-z"':])/g, "$1"),
+    },
+
+    addSpaceAfterEnglishPunctuation: {
+        activate: true,
+        description: "保留英文句末符号后的空格",
+        executor: (text: string) => text.replace(/([,.?;)])([^,.?;)\s])/g, "$1 $2"),
+    },
+
     /** 全角转半角, 参考：
      * 1. https://www.cnblogs.com/html55/p/10298569.html
      * 2. https://unicode-table.com/cn/search/?q=%E5%85%A8%E5%BD%A2%E6%95%B0%E5%AD%97 */
@@ -31,23 +64,5 @@ export const textHandlers: TextHandlers = {
             }
             return result;
         },
-    },
-    /** 替换换行符为空格 (参考：https://blog.csdn.net/lfod1997/article/details/121095287) */
-    replaceNewlinesWithSpaces: {
-        activate: true,
-        description: "将换行符替换为空格",
-        executor: (text: string) => text.replace(/\r?\n|(?<!\n)\r/, " "),
-    },
-    replaceMultipleSpacesWithASingleSpace: {
-        activate: true,
-        description: "多个空格或换行符替换为空格",
-        executor: (text: string) => text.replace(/\s+/g, " "),
-    },
-    removeSpacesBetweenNonEnglishLetters: {
-        activate: true,
-        description: "删除非英文字母间的空格",
-        executor: (text: string) => text
-            .replace(/([^A-Za-z"':])\s/g, "$1")
-            .replace(/\s([^A-Za-z"':])/g, "$1"),
     },
 };
