@@ -1,5 +1,5 @@
 import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
-import ArticleCopyTool from "../components/ArticleCopyTool.vue";
+import ArticleCopyTool from "./article-copy-tool/ArticleCopyTool.vue";
 
 
 const routes: RouteRecordRaw[] = [

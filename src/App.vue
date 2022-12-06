@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ArticleCopyTool from "./components/ArticleCopyTool.vue";
+import ArticleCopyTool from "./router/article-copy-tool/ArticleCopyTool.vue";
 import CopyrightFooter from "./components/CopyrightFooter.vue";
 import packageJson from "../package.json";
 </script>
