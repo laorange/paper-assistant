@@ -22,21 +22,23 @@ const outputTextTemp = computed(() => {
 });
 watch(() => outputTextTemp.value, (output) => outputText.value = output);
 
-async function copyInputText() {
+async function copyInputText(info: string = "复制成功") {
   await toClipboard(inputText.value);
-  message.info("复制成功");
+  message.success(info);
 }
 
-function clearInputText() {
+async function cutInputText() {
+  await copyInputText("剪切成功");
   inputText.value = "";
 }
 
-async function copyOutputText() {
+async function copyOutputText(info: string = "复制成功") {
   await toClipboard(outputText.value);
-  message.success("复制成功");
+  message.success(info);
 }
 
-function clearOutputText() {
+async function cutOutputText() {
+  await copyOutputText("剪切成功");
   outputText.value = "";
 }
 </script>
@@ -47,23 +49,19 @@ function clearOutputText() {
 
     <n-grid cols="1 1000:3" x-gap="10" y-gap="20">
       <n-gi>
-        <n-grid cols="1">
-          <n-gi>
-            <n-input type="textarea" placeholder="输入文本" :clearable="true" size="large" :autosize="true" v-model:value.lazy="inputText"></n-input>
-          </n-gi>
-          <n-gi>
-            <div class="button-area">
-              <n-space>
-                <n-button @click="copyInputText" size="large" type="info" :disabled="!inputText">复制:输入文本</n-button>
-                <n-button @click="clearInputText" size="large" type="warning" :disabled="!inputText">清空:输入文本</n-button>
-              </n-space>
-            </div>
-          </n-gi>
-        </n-grid>
+        <n-space :vertical="true">
+          <n-input type="textarea" placeholder="输入文本" :clearable="true" size="large" :autosize="true" v-model:value.lazy="inputText"></n-input>
+          <div class="button-area">
+            <n-space>
+              <n-button @click="copyInputText" type="info" :disabled="!inputText">复制</n-button>
+              <n-button @click="cutInputText" type="warning" :disabled="!inputText">剪切</n-button>
+            </n-space>
+          </div>
+        </n-space>
       </n-gi>
 
       <n-gi>
-        <n-space :vertical="true" justify="center" align="center">
+        <n-space :vertical="true" justify="center" align="center" :size="2">
           <n-form-item v-for="textHandler of refTextHandlers" :key="`textHandler-${textHandler.description}`"
                        :label="textHandler.description" :show-feedback="false" label-placement="left">
             <n-switch v-model:value="textHandler.activate"/>
@@ -72,19 +70,15 @@ function clearOutputText() {
       </n-gi>
 
       <n-gi>
-        <n-grid cols="1">
-          <n-gi>
-            <n-input type="textarea" placeholder="输出文本" :clearable="true" size="large" :autosize="true" v-model:value="outputText"></n-input>
-          </n-gi>
-          <n-gi>
-            <div class="button-area">
-              <n-space>
-                <n-button @click="copyOutputText" size="large" type="success" :disabled="!outputText">复制:输出文本</n-button>
-                <n-button @click="clearOutputText" size="large" type="warning" :disabled="!outputText">清空:输出文本</n-button>
-              </n-space>
-            </div>
-          </n-gi>
-        </n-grid>
+        <n-space :vertical="true">
+          <n-input type="textarea" placeholder="输出文本" :clearable="true" size="large" :autosize="true" v-model:value="outputText"></n-input>
+          <div class="button-area">
+            <n-space>
+              <n-button @click="copyOutputText" type="success" :disabled="!outputText">复制</n-button>
+              <n-button @click="cutOutputText" type="warning" :disabled="!outputText">剪切</n-button>
+            </n-space>
+          </div>
+        </n-space>
       </n-gi>
     </n-grid>
   </div>
