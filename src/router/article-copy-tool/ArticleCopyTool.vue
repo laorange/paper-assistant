@@ -3,7 +3,7 @@ import useClipboard from "vue-clipboard3";
 import {computed, reactive, ref, watch} from "vue";
 import {useMessage} from "naive-ui";
 import {textHandlers, TextHandlers} from "../../assets/ts/article-copy-tool/handlers";
-import {GrammarlyEditorPlugin} from "@grammarly/editor-sdk-vue";
+import GrammarlyEditor from "../../components/GrammarlyEditor.vue";
 
 const message = useMessage();
 const {toClipboard} = useClipboard();
@@ -42,8 +42,6 @@ async function cutOutputText() {
   await copyOutputText("剪切成功");
   outputText.value = "";
 }
-
-const inputArea = ref()
 </script>
 
 <template>
@@ -53,9 +51,7 @@ const inputArea = ref()
     <n-grid cols="1 1000:3" x-gap="10" y-gap="20">
       <n-gi>
         <n-space :vertical="true">
-          <GrammarlyEditorPlugin clientId="client_FhwfFMz1zFmBVSJvtqjf8f">
-            <n-input ref="inputArea" type="textarea" placeholder="输入文本" :clearable="true" size="large" :autosize="true" v-model:value.lazy="inputText"></n-input>
-          </GrammarlyEditorPlugin>
+          <GrammarlyEditor v-model:value="inputText" placeholder="输入文本"/>
 
           <div class="button-area">
             <n-space>

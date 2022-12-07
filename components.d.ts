@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     CopyrightFooter: typeof import('./src/components/CopyrightFooter.vue')['default']
+    GrammarlyEditor: typeof import('./src/components/GrammarlyEditor.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NFormItem: typeof import('naive-ui')['NFormItem']
     NGi: typeof import('naive-ui')['NGi']
