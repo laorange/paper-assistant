@@ -42,13 +42,21 @@ async function cutOutputText() {
   await copyOutputText("剪切成功");
   outputText.value = "";
 }
+
+const showConfigDrawer = ref(false);
+const tooManyInput = computed(() => inputText.value.length > 500);
 </script>
 
 <template>
   <div class="article-copy-tool">
-    <h1>学术小工具</h1>
+    <header>
+      <h1>学术小工具</h1>
+      <n-badge :value="Object.values(textHandlers).filter(h=>h.activate).length" type="success" :show-zero="true">
+        <n-button id="config-button" @click="showConfigDrawer = true" type="success" :dashed="true">设置</n-button>
+      </n-badge>
+    </header>
 
-    <n-grid cols="1 1000:3" x-gap="10" y-gap="20">
+    <n-grid :cols="tooManyInput?`1`:`1 800:2`" x-gap="10" y-gap="20">
       <n-gi>
         <n-space :vertical="true">
           <GrammarlyEditor v-model:value="inputText" placeholder="输入文本"/>
@@ -63,17 +71,8 @@ async function cutOutputText() {
       </n-gi>
 
       <n-gi>
-        <n-space :vertical="true" justify="center" align="center" :size="2">
-          <n-form-item v-for="textHandler of refTextHandlers" :key="`textHandler-${textHandler.description}`"
-                       :label="textHandler.description" :show-feedback="false" label-placement="left">
-            <n-switch v-model:value="textHandler.activate"/>
-          </n-form-item>
-        </n-space>
-      </n-gi>
-
-      <n-gi>
         <n-space :vertical="true">
-          <n-input type="textarea" placeholder="输出文本" :clearable="true" size="large" :autosize="true" v-model:value="outputText"></n-input>
+          <n-input type="textarea" placeholder="输出文本" :show-count="true" :clearable="true" size="large" :autosize="true" v-model:value="outputText"></n-input>
           <div class="button-area">
             <n-space>
               <n-button @click="copyOutputText" type="success" :disabled="!outputText">复制</n-button>
@@ -84,11 +83,30 @@ async function cutOutputText() {
       </n-gi>
     </n-grid>
   </div>
+
+  <n-drawer v-model:show="showConfigDrawer" :height="`${Object.keys(textHandlers).length * 40 + 100}px`" placement="bottom">
+    <n-drawer-content title="设置" :closable="true">
+      <n-space style="height: 100%" :vertical="true" justify="center" align="center" :size="2">
+        <n-form-item v-for="textHandler of refTextHandlers" :key="`textHandler-${textHandler.description}`"
+                     :label="textHandler.description" :show-feedback="false" label-placement="left">
+          <n-switch v-model:value="textHandler.activate"/>
+        </n-form-item>
+      </n-space>
+    </n-drawer-content>
+  </n-drawer>
 </template>
 
 <style scoped>
 h1 {
   text-align: center;
+}
+
+header {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
 }
 
 .button-area {
