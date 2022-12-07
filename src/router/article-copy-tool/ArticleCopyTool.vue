@@ -68,7 +68,7 @@ function introduce() {
         <n-button id="intro-button" @click="introduce" type="info" :dashed="true" size="large">使用说明</n-button>
 
         <div data-title="偏好设置" data-intro="按需启用功能">
-          <n-badge :value="Object.values(textHandlers).filter(h=>h.activate).length" type="success" :show-zero="true">
+          <n-badge :value="Object.values(refTextHandlers).filter(h=>h.activate).length" type="success" :show-zero="true">
             <n-button id="config-button" @click="showConfigDrawer = true" type="success" :dashed="true" size="large">偏好设置</n-button>
           </n-badge>
         </div>
