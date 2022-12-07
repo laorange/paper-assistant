@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@grammarly/editor-sdk-vue": "^2.3.0",
     "@laorange/copyright-footer": "^0.1.4",
     "vue": "^3.2.37",
     "vue-clipboard3": "^2.0.0",
