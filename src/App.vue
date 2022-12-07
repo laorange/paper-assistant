@@ -2,6 +2,8 @@
 import ArticleCopyTool from "./router/article-copy-tool/ArticleCopyTool.vue";
 import CopyrightFooter from "./components/CopyrightFooter.vue";
 import packageJson from "../package.json";
+
+const projectUrl = `https://${location.href.indexOf("gitee") > -1 ? "gitee" : "github"}.com/laorange/paper-assistant`;
 </script>
 
 <template>
@@ -10,7 +12,7 @@ import packageJson from "../package.json";
       <ArticleCopyTool/>
     </main>
 
-    <CopyrightFooter project-url="https://github.com/laorange/paper-assistant" :version="packageJson.version"/>
+    <CopyrightFooter :project-url="projectUrl" :version="packageJson.version"/>
   </n-message-provider>
 </template>
 
