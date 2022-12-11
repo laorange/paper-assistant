@@ -85,8 +85,8 @@ function introduce() {
 
           <div class="button-area">
             <n-space>
-              <n-button @click="copyInputText" type="info" :disabled="!inputText">复制</n-button>
-              <n-button @click="cutInputText" type="warning" :disabled="!inputText">剪切</n-button>
+              <n-button @click="copyInputText()" type="info" :disabled="!inputText">复制</n-button>
+              <n-button @click="cutInputText()" type="warning" :disabled="!inputText">剪切</n-button>
             </n-space>
           </div>
         </n-space>
@@ -99,8 +99,8 @@ function introduce() {
           </div>
           <div class="button-area">
             <n-space>
-              <n-button @click="copyOutputText" type="success" :disabled="!outputText">复制</n-button>
-              <n-button @click="cutOutputText" type="warning" :disabled="!outputText">剪切</n-button>
+              <n-button @click="copyOutputText()" type="success" :disabled="!outputText">复制</n-button>
+              <n-button @click="cutOutputText()" type="warning" :disabled="!outputText">剪切</n-button>
             </n-space>
           </div>
         </n-space>
