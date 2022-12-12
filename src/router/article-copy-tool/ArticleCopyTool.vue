@@ -22,7 +22,7 @@ function getTextHandlerArray(): TextHandlerWithName[] {
   return Object.entries(textHandlers).map(([handlerName, handler], index) => {
     return {
       handlerName: handlerName,
-      handler: {...handler, activate: store.storage.handlerOptions[handlerName]?.activate},
+      handler: {...handler, activate: store.storage.handlerOptions[handlerName]?.activate ?? handler.activate},
       order: store.storage.handlerOptions[handlerName]?.order ?? handlerAmount + index,
     };
   }).sort((a, b) => a.order - b.order).map(data => {
