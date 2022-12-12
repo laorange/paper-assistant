@@ -30,7 +30,9 @@ onBeforeMount(() => {
       <ArticleCopyTool/>
     </main>
 
-    <CopyrightFooter :project-url="projectUrl" :version="packageJson.version"/>
+    <CopyrightFooter :project-url="projectUrl" :version="packageJson.version"
+                     repo-button-text="查看代码"
+                     bilibili-url="https://www.bilibili.com/video/BV1T24y1X78w/"/>
   </n-message-provider>
 </template>
 
