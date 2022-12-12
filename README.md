@@ -34,12 +34,12 @@ I want to modify           these      :
 
 目前有以下可选功能：
 
-1. 删除重复的换行符
-2. 将换行符替换为空格 
-3. 删除重复的空格 
-4. 删除非英文字母间的空格 
-5. 保留英文句末符号后的空格 
-6. 全角转半角
+1. 全角字符转半角字符
+2. 删除重复的换行符
+3. 将换行符替换为空格 
+4. 删除重复的空格 
+5. 删除非英文字母间的空格 
+6. 保留英文句末符号后的空格 
 
 ### (2) 英文语法检查
 
@@ -49,3 +49,21 @@ I want to modify           these      :
 2. 使用电脑访问
 
 将检测输入文字的语法错误(基于[Grammarly](https://developer.grammarly.com/))
+
+## 致开发者
+
+😉为方便看代码的朋友，我把文本处理的方法都单独整理成了一个[文件](https://github.com/laorange/paper-assistant/blob/master/src/assets/ts/article-copy-tool/handlers.ts)，并写了注释、规范了接口：
+
+```typescript
+// handlers.ts
+interface TextHandlers {
+    [handlerName: string]: {
+        activate: boolean,  // 默认是否启用
+        description: string,  // 对该功能的描述
+        executor: (text: string) => string  // 功能函数
+    };
+}
+```
+
+如您有好的想法，可以在以上内容的基础上修改，欢迎在GitHub仓库上发起 `pull request`😊
+
