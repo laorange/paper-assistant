@@ -1,12 +1,40 @@
+export interface TextHandler {
+    activate: boolean,  // 默认是否启用
+    description: string,  // 对该功能的描述
+    executor: (text: string) => string  // 功能函数
+}
+
 export interface TextHandlers {
-    [handlerName: string]: {
-        activate: boolean,  // 默认是否启用
-        description: string,  // 对该功能的描述
-        executor: (text: string) => string  // 功能函数
-    };
+    [handlerName: string]: TextHandler;
 }
 
 export const textHandlers: TextHandlers = {
+    /** 全角转半角, 参考：
+     * 1. https://www.cnblogs.com/html55/p/10298569.html
+     * 2. https://unicode-table.com/cn/search/?q=%E5%85%A8%E5%BD%A2%E6%95%B0%E5%AD%97 */
+    convertFullWidthCharactersToHalfWidth: {
+        activate: true,
+        description: "全角字符转半角字符",
+        executor: (text: string) => {
+            let result = "";
+            for (let i = 0; i < text.length; i++) {
+                let char = text.charCodeAt(i);
+                // 中文空格替换为英文空格
+                if (char == 12288) {
+                    result += String.fromCharCode(char - 12256);
+                    continue;
+                }
+                if (char > 65280 && char < 65375
+                    // 对，：；·！#￥%…这样的全角字符不做转换
+                    && [..."，：；·！#￥%…"].indexOf(text[i]) === -1) {
+                    console.log([..."，：；·！#￥%…"].indexOf(text[i]));
+                    result += String.fromCharCode(char - 65248);
+                } else result += String.fromCharCode(text.charCodeAt(i));
+            }
+            return result;
+        },
+    },
+
     deleteMultipleNewlines: {
         activate: true,
         description: "删除重复的换行符",
@@ -38,31 +66,5 @@ export const textHandlers: TextHandlers = {
         activate: true,
         description: "保留英文句末符号后的空格",
         executor: (text: string) => text.replace(/([,.?;)])([^,.?;)\s])/g, "$1 $2"),
-    },
-
-    /** 全角转半角, 参考：
-     * 1. https://www.cnblogs.com/html55/p/10298569.html
-     * 2. https://unicode-table.com/cn/search/?q=%E5%85%A8%E5%BD%A2%E6%95%B0%E5%AD%97 */
-    convertFullWidthCharactersToHalfWidth: {
-        activate: true,
-        description: "全角转半角",
-        executor: (text: string) => {
-            let result = "";
-            for (let i = 0; i < text.length; i++) {
-                let char = text.charCodeAt(i);
-                // 中文空格替换为英文空格
-                if (char == 12288) {
-                    result += String.fromCharCode(char - 12256);
-                    continue;
-                }
-                if (char > 65280 && char < 65375
-                    // 对，：；·！#￥%…这样的全角字符不做转换
-                    && [..."，：；·！#￥%…"].indexOf(text[i]) === -1) {
-                    console.log([..."，：；·！#￥%…"].indexOf(text[i]));
-                    result += String.fromCharCode(char - 65248);
-                } else result += String.fromCharCode(text.charCodeAt(i));
-            }
-            return result;
-        },
     },
 };

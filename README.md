@@ -56,12 +56,10 @@ I want to modify           these      :
 
 ```typescript
 // handlers.ts
-interface TextHandlers {
-    [handlerName: string]: {
-        activate: boolean,  // 默认是否启用
-        description: string,  // 对该功能的描述
-        executor: (text: string) => string  // 功能函数
-    };
+export interface TextHandler {
+    activate: boolean,  // 默认是否启用
+    description: string,  // 对该功能的描述
+    executor: (text: string) => string  // 功能函数
 }
 ```
 

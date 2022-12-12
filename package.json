@@ -3,7 +3,7 @@
   "private": false,
   "author": "laorange",
   "license": "AGPL-3.0",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -14,9 +14,11 @@
     "@grammarly/editor-sdk-vue": "^2.3.0",
     "@laorange/copyright-footer": "^0.1.4",
     "intro.js": "^6.0.0",
+    "pinia": "^2.0.28",
     "vue": "^3.2.37",
     "vue-clipboard3": "^2.0.0",
-    "vue-router": "4"
+    "vue-router": "4",
+    "vue3-storage": "^0.1.11"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.2",
