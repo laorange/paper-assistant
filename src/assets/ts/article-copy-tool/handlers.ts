@@ -8,7 +8,53 @@ export interface TextHandlers {
     [handlerName: string]: TextHandler;
 }
 
+export type ReplaceTuple = [RegExp | string, string]
+
 export const textHandlers: TextHandlers = {
+    transferEnglishPunctuationToChinese: {
+        activate: false,
+        description: "将英文标点转换为中文标点",
+        executor: text => {
+            const punctuationTuples: ReplaceTuple[] = [
+                [/'([\s\S]+?)'/g, "‘$1’"],
+                [/"([\s\S]+?)"/g, "“$1”"],
+                [",", "，"],
+                [/\.(\D)/g, "。$1"],  /** `\D`:避免是小数点 */
+                [":", "："],
+                [";", "；"],
+                ["[", "【"],
+                ["]", "】"],
+                ["?", "？"],
+                ["(", "（"],
+                [")", "）"],
+                ["!", "！"],
+            ];
+            return punctuationTuples.reduce((t, tuple) => t.replace(tuple[0], tuple[1]), text);
+        },
+    },
+
+    transferChinesePunctuationToEnglish: {
+        activate: false,
+        description: "将中文标点转换为英文标点",
+        executor: text => {
+            const punctuationTuples: ReplaceTuple[] = [
+                [/[‘’]/g, "'"],
+                [/[“”]/g, "\""],
+                ["，", ","],
+                ["。", "."],
+                ["：", ":"],
+                ["；", ";"],
+                ["【", "["],
+                ["】", "]"],
+                ["？", "?"],
+                ["（", "("],
+                ["）", ")"],
+                ["！", "!"],
+            ];
+            return punctuationTuples.reduce((t, tuple) => t.replace(tuple[0], tuple[1]), text);
+        },
+    },
+
     /** 全角转半角, 参考：
      * 1. https://www.cnblogs.com/html55/p/10298569.html
      * 2. https://unicode-table.com/cn/search/?q=%E5%85%A8%E5%BD%A2%E6%95%B0%E5%AD%97 */
