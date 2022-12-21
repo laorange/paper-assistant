@@ -12,6 +12,7 @@ specifiers:
   unplugin-auto-import: ^0.11.1
   unplugin-vue-components: ^0.22.4
   vite: ^3.0.6
+  vite-plugin-singlefile: ^0.13.2
   vue: ^3.2.37
   vue-clipboard3: ^2.0.0
   vue-router: '4'
@@ -36,6 +37,7 @@ devDependencies:
   unplugin-auto-import: 0.11.5_rollup@3.6.0
   unplugin-vue-components: 0.22.11_rollup@3.6.0+vue@3.2.45
   vite: 3.2.5
+  vite-plugin-singlefile: 0.13.2_rollup@3.6.0+vite@3.2.5
   vue-tsc: 0.39.5_typescript@4.9.3
 
 packages:
@@ -1260,6 +1262,18 @@ packages:
     dependencies:
       evtd: 0.2.4
       vue: 3.2.45
+    dev: true
+
+  /vite-plugin-singlefile/0.13.2_rollup@3.6.0+vite@3.2.5:
+    resolution: {integrity: sha512-HAvrU9mxasNMn/YF0Hb9NjsWDstCWe4iLQ6IR5ppOiNMvXjcyqU3C9SDQ32xnonx3Y04JUGjD2bGiT6q0S9T8w==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      rollup: '>=2.79.0'
+      vite: '>=3.2.0'
+    dependencies:
+      micromatch: 4.0.5
+      rollup: 3.6.0
+      vite: 3.2.5
     dev: true
 
   /vite/3.2.5:

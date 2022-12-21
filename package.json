@@ -3,11 +3,12 @@
   "private": false,
   "author": "laorange",
   "license": "AGPL-3.0",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build --base=/paper-assistant/",
+    "build-single-file": "vue-tsc --noEmit && vite build --base=/paper-assistant/ --mode single-file",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
     "unplugin-auto-import": "^0.11.1",
     "unplugin-vue-components": "^0.22.4",
     "vite": "^3.0.6",
+    "vite-plugin-singlefile": "^0.13.2",
     "vue-tsc": "^0.39.5"
   }
 }
