@@ -118,7 +118,7 @@ export const textHandlers: TextHandlers = {
 
     addSpaceAfterEnglishPunctuation: {
         activate: true,
-        description: "保留英文句末符号后的空格",
-        executor: (text: string) => text.replace(/([,.?;)])([^,.?;)\s])/g, "$1 $2"),
+        description: "在标点符号后添加空格",
+        executor: (text: string) => text.replace(/([,.?:;)])([^,.?:;)\s])/g, "$1 $2"),
     },
 };
