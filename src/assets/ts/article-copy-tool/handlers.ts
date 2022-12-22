@@ -108,6 +108,14 @@ export const textHandlers: TextHandlers = {
             .replace(/ +([^A-Za-z"':])/g, "$1"),
     },
 
+    addSpacesBetweenEnglishLettersAndNumbers: {
+        activate: true,
+        description: "在字母与数字之间添加空格",
+        executor: (text: string) => text
+            .replace(/(\d)([A-Za-z])/g, "$1 $2")
+            .replace(/([A-Za-z])(\d)/g, "$1 $2")
+    },
+
     addSpaceAfterEnglishPunctuation: {
         activate: true,
         description: "保留英文句末符号后的空格",
