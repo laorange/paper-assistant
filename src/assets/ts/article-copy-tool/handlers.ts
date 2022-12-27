@@ -29,7 +29,7 @@ export const textHandlers: TextHandlers = {
                 [")", "）"],
                 ["!", "！"],
             ];
-            return punctuationTuples.reduce((t, tuple) => t.replace(tuple[0], tuple[1]), text);
+            return punctuationTuples.reduce((t, tuple) => t.replaceAll(tuple[0], tuple[1]), text);
         },
     },
 
@@ -51,7 +51,7 @@ export const textHandlers: TextHandlers = {
                 ["）", ")"],
                 ["！", "!"],
             ];
-            return punctuationTuples.reduce((t, tuple) => t.replace(tuple[0], tuple[1]), text);
+            return punctuationTuples.reduce((t, tuple) => t.replaceAll(tuple[0], tuple[1]), text);
         },
     },
 
@@ -84,41 +84,41 @@ export const textHandlers: TextHandlers = {
     deleteMultipleNewlines: {
         activate: true,
         description: "删除重复的换行符",
-        executor: (text: string) => text.replace(/[\f\r\t\n]+/g, "\n"),
+        executor: (text: string) => text.replaceAll(/[\f\r\t\n]+/g, "\n"),
     },
 
     /** 替换换行符为空格 (参考：https://blog.csdn.net/lfod1997/article/details/121095287) */
     replaceNewlinesWithSpaces: {
         activate: true,
         description: "将换行符替换为空格",
-        executor: (text: string) => text.replace(/[\f\r\t\n]/g, " "),
+        executor: (text: string) => text.replaceAll(/[\f\r\t\n]/g, " "),
     },
 
     replaceMultipleSpacesWithASingleSpace: {
         activate: true,
         description: "删除重复的空格",
-        executor: (text: string) => text.replace(/ +/g, " "),
+        executor: (text: string) => text.replaceAll(/ +/g, " "),
     },
 
     removeSpacesBetweenNonEnglishLetters: {
         activate: true,
         description: "删除非英文字母间的空格",
         executor: (text: string) => text
-            .replace(/([^A-Za-z"':]) +/g, "$1")
-            .replace(/ +([^A-Za-z"':])/g, "$1"),
+            .replaceAll(/([^A-Za-z"':]) +/g, "$1")
+            .replaceAll(/ +([^A-Za-z"':])/g, "$1"),
     },
 
     addSpacesBetweenEnglishLettersAndNumbers: {
         activate: true,
         description: "在字母与数字之间添加空格",
         executor: (text: string) => text
-            .replace(/(\d)([A-Za-z])/g, "$1 $2")
-            .replace(/([A-Za-z])(\d)/g, "$1 $2")
+            .replaceAll(/(\d)([A-Za-z])/g, "$1 $2")
+            .replaceAll(/([A-Za-z])(\d)/g, "$1 $2")
     },
 
     addSpaceAfterEnglishPunctuation: {
         activate: true,
         description: "在标点符号后添加空格",
-        executor: (text: string) => text.replace(/([,.?:;)])([^,.?:;)\s])/g, "$1 $2"),
+        executor: (text: string) => text.replaceAll(/([,.?:;)])([^,.?:;)\s])/g, "$1 $2"),
     },
 };
