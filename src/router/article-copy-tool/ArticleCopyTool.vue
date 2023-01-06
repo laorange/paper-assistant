@@ -177,8 +177,12 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
       <n-space justify="center" align="center" :vertical="true">
         <n-space style="height: 100%" :vertical="true" justify="center" align="end" :size="2">
           <n-form-item v-for="(textHandler, index) of refTextHandlerArray" :key="`textHandler-${textHandler.description}`"
-                       :label="textHandler.description" :show-feedback="false" label-placement="left">
-            <n-space>
+                       :show-feedback="false" label-placement="left">
+            <template #label>
+              <div style="max-width: calc(100vw - 190px); flex-wrap: wrap">{{ textHandler.description }}</div>
+            </template>
+
+            <n-space :size="10">
               <n-switch v-model:value="textHandler.activate"/>
               <n-button round type="success" dashed size="small" @click="movePositionOfHandler(`up`, index)" :disabled="index===0">↑</n-button>
               <n-button round type="success" dashed size="small" @click="movePositionOfHandler(`down`, index)" :disabled="index===handlerAmount-1">↓</n-button>
