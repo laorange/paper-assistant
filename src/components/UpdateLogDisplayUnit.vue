@@ -15,6 +15,7 @@ const updateLog = `
 
   <hr/>
 
+  <h1>更新日志</h1>
   <h3>v0.3.4 (2023-01-06)</h3>
   <p>新增功能：删除小数点、冒号与数字之间的空格</p>
   <p>新增：更新日志展示页面</p>
@@ -47,7 +48,7 @@ const updateLog = `
 <template>
   <n-button class="show-update-log-button" @click="showLocal=true" color="#3f3f3f" :dashed="true">更新日志</n-button>
 
-  <n-drawer v-model:show="showLocal" height="80%" placement="top">
+  <n-drawer v-model:show="showLocal" height="80%" placement="bottom">
     <n-drawer-content title="更新日志" :closable="true">
       <n-space justify="center" align="center" :vertical="true">
         <n-space style="height: 100%" :vertical="true" justify="center" align="end" :size="2">
