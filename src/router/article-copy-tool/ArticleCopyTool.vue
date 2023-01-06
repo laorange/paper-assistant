@@ -7,6 +7,7 @@ import GrammarlyEditor from "../../components/GrammarlyEditor.vue";
 import {useStore} from "../../store/useStore";
 // @ts-ignore
 import introJs from "intro.js";
+import UpdateLogDisplayUnit from "../../components/UpdateLogDisplayUnit.vue";
 
 const message = useMessage();
 const {toClipboard} = useClipboard();
@@ -82,7 +83,12 @@ function introduce() {
     {
       element: document.querySelector(".preference-button-area"),
       title: "偏好设置",
-      intro: "按需启用功能",
+      intro: `按需启用功能。目前您可以选择:<p>${refTextHandlerArray.value.map((h, i) => `${i + 1}. ` + h.description).join("<br/>")}</p>`,
+    },
+    {
+      element: document.querySelector(".show-update-log-button"),
+      title: "更新日志",
+      intro: "查看本网站的版本迭代过程",
     },
     {
       element: document.querySelector(".input-area"),
@@ -122,13 +128,15 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
     <header>
       <h1>学术小工具</h1>
       <n-space>
-        <n-button id="intro-button" @click="introduce" type="info" :dashed="true" size="large">使用说明</n-button>
+        <n-button id="intro-button" @click="introduce" type="info" :dashed="true">使用说明</n-button>
 
         <div class="preference-button-area">
           <n-badge :value="`${refTextHandlerArray.filter(h=>h.activate).length}/${refTextHandlerArray.length}`" type="success">
-            <n-button id="config-button" @click="showConfigDrawer = true" type="success" :dashed="true" size="large">偏好设置</n-button>
+            <n-button id="config-button" @click="showConfigDrawer = true" type="success" :dashed="true">偏好设置</n-button>
           </n-badge>
         </div>
+
+        <UpdateLogDisplayUnit v-model:show="store.showUpdateLog"/>
       </n-space>
     </header>
 

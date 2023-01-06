@@ -19,7 +19,11 @@ watch(() => store.storage, (newStorage) => {
 
 onBeforeMount(() => {
   let storageNow = storage.getStorageSync<Storage>(LOCAL_STORAGE_KEY);
-  if (!!storageNow && storageNow?.version !== packageJson.version) storageNow.handlerOptions = {}; // 更新版本时，清除本地缓存
+  if (!!storageNow && storageNow?.version !== packageJson.version) {
+    // 1. 本地缓存不为空  2.更新版本时 => 1.清除本地缓存 2.弹出更新日志
+    storageNow.handlerOptions = {};
+    store.showUpdateLog = true;
+  }
   store.storage = {...store.storage, ...storageNow ?? {}, version: packageJson.version};
 });
 </script>

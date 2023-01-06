@@ -11,7 +11,8 @@ export interface Storage {
 }
 
 export interface State {
-    storage: Storage;
+    storage: Storage,
+    showUpdateLog: boolean,
 }
 
 export const useStore = defineStore("store", {
@@ -21,6 +22,7 @@ export const useStore = defineStore("store", {
                 handlerOptions: {},
                 version: "",
             },
+            showUpdateLog: false,
         };
     },
     getters: {},

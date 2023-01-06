@@ -22,5 +22,6 @@ declare module '@vue/runtime-core' {
     NSwitch: typeof import('naive-ui')['NSwitch']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    UpdateLogDisplayUnit: typeof import('./src/components/UpdateLogDisplayUnit.vue')['default']
   }
 }
