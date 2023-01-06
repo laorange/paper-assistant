@@ -113,12 +113,24 @@ export const textHandlers: TextHandlers = {
         description: "在字母与数字之间添加空格",
         executor: (text: string) => text
             .replaceAll(/(\d)([A-Za-z])/g, "$1 $2")
-            .replaceAll(/([A-Za-z])(\d)/g, "$1 $2")
+            .replaceAll(/([A-Za-z])(\d)/g, "$1 $2"),
     },
 
     addSpaceAfterEnglishPunctuation: {
         activate: true,
         description: "在标点符号后添加空格",
         executor: (text: string) => text.replaceAll(/([,.?:;)])([^,.?:;)\s])/g, "$1 $2"),
+    },
+
+    deleteSpaceBetweenDotAndNumber: {
+        activate: true,
+        description: "删除小数点和数字之间的空格",
+        executor: (text: string) => text.replaceAll(/(\.)\s+(\d)/g, "$1$2"),
+    },
+
+    deleteSpaceBetweenColonAndNumber: {
+        activate: false,
+        description: "删除冒号和数字之间的空格",
+        executor: (text: string) => text.replaceAll(/(:)\s+(\d)/g, "$1$2"),
     },
 };
