@@ -31,25 +31,22 @@ function getTextHandlerArray(): TextHandlerWithName[] {
 }
 
 const refTextHandlerArray = ref<TextHandlerWithName[]>(getTextHandlerArray());
-// 将顺序和激活状态写入localstorage
-watch(() => refTextHandlerArray.value, (ths) => {
-  let handlerOptions: typeof store.storage.handlerOptions = {};
-  ths.map((th, index) => handlerOptions[th.handlerName] = {order: index, activate: th.activate});
-  store.storage.handlerOptions = handlerOptions;
-}, {deep: true, immediate: true});
-
 const inputText = ref<string>("");
 const outputText = ref<string>("");
-const outputTextTemp = computed(() => {
-  let text = inputText.value;
-  for (let textHandler of refTextHandlerArray.value) {
-    if (textHandler.activate) {
-      text = textHandler.executor(text);
-    }
-  }
-  return text;
-});
-watch(() => outputTextTemp.value, (output) => outputText.value = output);
+
+function transformText() {
+  outputText.value = refTextHandlerArray.value
+      .filter(textHandler => textHandler.activate)
+      .reduce((text, textHandler) => textHandler.executor(text), inputText.value);
+}
+
+watch(() => inputText.value, transformText);
+watch(() => refTextHandlerArray.value, (ths) => {
+  transformText();
+  let handlerOptions: typeof store.storage.handlerOptions = {};
+  ths.map((th, index) => handlerOptions[th.handlerName] = {order: index, activate: th.activate});
+  store.storage.handlerOptions = handlerOptions; // 将顺序和激活状态写入localstorage
+}, {deep: true, immediate: true});
 
 function setTextHandlerArrayToDefault() {
   refTextHandlerArray.value = Object.entries(textHandlers).map(([handlerName, handler]) => {
