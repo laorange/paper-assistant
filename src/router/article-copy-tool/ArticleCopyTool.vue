@@ -78,13 +78,34 @@ const showConfigDrawer = ref(false);
 const tooManyInput = computed(() => inputText.value.length > 500);
 
 function introduce() {
+  let steps: { element?: Element | null, title?: string, intro?: string, position?: string }[] = [
+    {
+      element: document.querySelector(".preference-button-area"),
+      title: "偏好设置",
+      intro: "按需启用功能",
+    },
+    {
+      element: document.querySelector(".input-area"),
+      title: "输入框",
+      intro: `请在这里输入内容，程序将根据<strong>偏好设置</strong>进行文本处理。<hr/>此外，如果您:<br/>①输入的是英文<br/>②使用电脑访问<br/>将为您检测语法(基于Grammarly)`,
+    },
+    {
+      element: document.querySelector(".output-area"),
+      title: "输出框",
+      intro: "将在这里输出处理结果",
+    },
+  ];
+
   introJs().setOptions({
     showBullets: false,
+    keyboardNavigation: true,
     disableInteraction: true,
-    exitOnOverlayClick: false,
+    exitOnOverlayClick: true,
     prevLabel: "上一步",
     nextLabel: "下一步",
     doneLabel: "完成",
+    autoPosition: true,
+    steps,
   }).start();
 }
 
@@ -103,7 +124,7 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
       <n-space>
         <n-button id="intro-button" @click="introduce" type="info" :dashed="true" size="large">使用说明</n-button>
 
-        <div data-title="偏好设置" data-intro="按需启用功能">
+        <div class="preference-button-area">
           <n-badge :value="`${refTextHandlerArray.filter(h=>h.activate).length}/${refTextHandlerArray.length}`" type="success">
             <n-button id="config-button" @click="showConfigDrawer = true" type="success" :dashed="true" size="large">偏好设置</n-button>
           </n-badge>
@@ -114,8 +135,7 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
     <n-grid :cols="tooManyInput?`1`:`1 800:2`" x-gap="10" y-gap="20">
       <n-gi>
         <n-space :vertical="true">
-          <div data-title="输入框"
-               data-intro="请在这里输入内容，程序将根据<strong>偏好设置</strong>进行文本处理。<hr/>此外，如果您:<br/>①输入的是英文<br/>②使用电脑访问<br/>将为您检测语法(基于Grammarly)">
+          <div class="input-area">
             <GrammarlyEditor v-model:value="inputText" placeholder="输入文本"/>
           </div>
 
@@ -130,7 +150,7 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
 
       <n-gi>
         <n-space :vertical="true">
-          <div data-title="输出框" data-intro="将在这里输出处理结果">
+          <div class="output-area">
             <n-input type="textarea" placeholder="输出文本" :show-count="true" :clearable="true" size="large" :autosize="true" v-model:value="outputText"></n-input>
           </div>
           <div class="button-area">
