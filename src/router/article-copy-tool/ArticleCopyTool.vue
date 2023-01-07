@@ -148,9 +148,10 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
           </div>
 
           <div class="button-area">
-            <n-space>
+            <n-space :size="30">
               <n-button @click="copyInputText()" type="info" :disabled="!inputText">复制</n-button>
               <n-button @click="cutInputText()" type="warning" :disabled="!inputText">剪切</n-button>
+              <n-button @click="inputText=''" color="#3f3f3f" :disabled="!inputText">清空</n-button>
             </n-space>
           </div>
         </n-space>
@@ -162,9 +163,10 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
             <n-input type="textarea" placeholder="输出文本" :show-count="true" :clearable="true" size="large" :autosize="true" v-model:value="outputText"></n-input>
           </div>
           <div class="button-area">
-            <n-space>
+            <n-space :size="30">
               <n-button @click="copyOutputText()" type="success" :disabled="!outputText">复制</n-button>
               <n-button @click="cutOutputText()" type="warning" :disabled="!outputText">剪切</n-button>
+              <n-button @click="outputText=''" color="#3f3f3f" :disabled="!outputText">清空</n-button>
             </n-space>
           </div>
         </n-space>

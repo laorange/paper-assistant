@@ -11,13 +11,20 @@ const showLocal = computed<boolean>({
 
 const updateLog = `
 <div>
-  <p>若您遇到问题或有好的建议😊欢迎在<a href="https://www.bilibili.com/video/BV1T24y1X78w/">B站评论区</a>或<a href="https://github.com/laorange/paper-assistant/issues">GitHub</a>留言</p>
+  <p>若您遇到问题或有好的建议😊欢迎在<a target="_blank" href="https://www.bilibili.com/video/BV1T24y1X78w/">B站评论区</a>或<a target="_blank" href="https://github.com/laorange/paper-assistant/issues">GitHub</a>留言</p>
 
   <hr/>
 
   <h1>更新日志</h1>
+  <h3>v0.3.5 (2023-01-07)</h3>
+  <p>优化：文本框下新增清空按钮
+    <a style="text-decoration: none" target="_blank" href="https://www.bilibili.com/video/BV1T24y1X78w/#reply145609989120" title="来自评论区小伙伴的建议">🏷️</a>
+  </p>
+
   <h3>v0.3.4 (2023-01-06)</h3>
-  <p>新增功能：删除小数点、冒号与数字之间的空格</p>
+  <p>新增功能：删除小数点、冒号与数字之间的空格
+    <a style="text-decoration: none" target="_blank" href="https://www.bilibili.com/video/BV1T24y1X78w/#reply145368905056" title="感谢评论区小伙伴的找到的bug">🏷️</a>
+  </p>
   <p>新增：更新日志展示页面</p>
   <p>优化：对输入文本的监测方式</p>
 
@@ -52,7 +59,7 @@ const updateLog = `
     <n-drawer-content title="更新日志" :closable="true">
       <n-space justify="center" align="center" :vertical="true">
         <n-space style="height: 100%" :vertical="true" justify="center" align="end" :size="2">
-          <div v-html="updateLog"/>
+          <div class="update-log-display-area" v-html="updateLog"/>
         </n-space>
       </n-space>
     </n-drawer-content>
