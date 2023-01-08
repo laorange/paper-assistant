@@ -13,7 +13,7 @@ const valueLocal = computed<string>({
 
 <template>
   <GrammarlyEditorPlugin clientId="client_FhwfFMz1zFmBVSJvtqjf8f">
-    <n-input ref="inputArea" type="textarea" :show-count="true" :placeholder="placeholder" :clearable="true" size="large" :autosize="true" v-model:value.lazy="valueLocal"></n-input>
+    <n-input ref="inputArea" type="textarea" :show-count="true" :placeholder="placeholder" size="large" :autosize="true" v-model:value.lazy="valueLocal"></n-input>
   </GrammarlyEditorPlugin>
 </template>
 

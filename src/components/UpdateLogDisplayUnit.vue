@@ -16,6 +16,11 @@ const updateLog = `
   <hr/>
 
   <h1>更新日志</h1>
+  <h3>v0.3.6 (2023-01-08)</h3>
+  <p>优化：剪切和清空输入文本时不再清空输出框
+    <a style="text-decoration: none" target="_blank" href="https://www.bilibili.com/video/BV1T24y1X78w/#reply145757356944" title="来自评论区小伙伴的建议">🏷️</a>
+  </p>
+
   <h3>v0.3.5 (2023-01-07)</h3>
   <p>优化：文本框下新增清空按钮
     <a style="text-decoration: none" target="_blank" href="https://www.bilibili.com/video/BV1T24y1X78w/#reply145609989120" title="来自评论区小伙伴的建议">🏷️</a>

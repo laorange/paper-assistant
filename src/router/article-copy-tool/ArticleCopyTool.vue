@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import useClipboard from "vue-clipboard3";
-import {computed, ref, watch} from "vue";
+import {computed, nextTick, ref, watch} from "vue";
 import {useMessage} from "naive-ui";
 import {TextHandler, textHandlers} from "../../assets/ts/article-copy-tool/handlers";
 import GrammarlyEditor from "../../components/GrammarlyEditor.vue";
@@ -61,8 +61,16 @@ async function copyInputText(info: string = "复制成功") {
 }
 
 async function cutInputText() {
+  let outputTextTemp = outputText.value;
   await copyInputText("剪切成功");
   inputText.value = "";
+  await nextTick(() => outputText.value = outputTextTemp);
+}
+
+function clearInputText() {
+  let outputTextTemp = outputText.value;
+  inputText.value = "";
+  nextTick(() => outputText.value = outputTextTemp);
 }
 
 async function copyOutputText(info: string = "复制成功") {
@@ -151,7 +159,7 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
             <n-space :size="30">
               <n-button @click="copyInputText()" type="info" :disabled="!inputText">复制</n-button>
               <n-button @click="cutInputText()" type="warning" :disabled="!inputText">剪切</n-button>
-              <n-button @click="inputText=''" color="#3f3f3f" :disabled="!inputText">清空</n-button>
+              <n-button @click="clearInputText()" color="#3f3f3f" :disabled="!inputText">清空</n-button>
             </n-space>
           </div>
         </n-space>
@@ -160,7 +168,7 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
       <n-gi>
         <n-space :vertical="true">
           <div class="output-area">
-            <n-input type="textarea" placeholder="输出文本" :show-count="true" :clearable="true" size="large" :autosize="true" v-model:value="outputText"></n-input>
+            <n-input type="textarea" placeholder="输出文本" :show-count="true" size="large" :autosize="true" v-model:value="outputText"></n-input>
           </div>
           <div class="button-area">
             <n-space :size="30">
