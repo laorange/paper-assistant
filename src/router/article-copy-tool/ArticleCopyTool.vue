@@ -23,8 +23,8 @@ function getTextHandlerArray(): TextHandlerWithName[] {
   return Object.entries(textHandlers).map(([handlerName, handler], index) => {
     return {
       handlerName: handlerName,
-      handler: {...handler, activate: store.storage.handlerOptions[handlerName]?.activate ?? handler.activate},
-      order: store.storage.handlerOptions[handlerName]?.order ?? handlerAmount + index,
+      handler: {...handler, activate: store.storage.copy.handlerOptions[handlerName]?.activate ?? handler.activate},
+      order: store.storage.copy.handlerOptions[handlerName]?.order ?? handlerAmount + index,
     };
   }).sort((a, b) => a.order - b.order).map(data => {
     return {...data.handler, handlerName: data.handlerName};
@@ -32,21 +32,19 @@ function getTextHandlerArray(): TextHandlerWithName[] {
 }
 
 const refTextHandlerArray = ref<TextHandlerWithName[]>(getTextHandlerArray());
-const inputText = ref<string>("");
-const outputText = ref<string>("");
 
 function transformText() {
-  outputText.value = refTextHandlerArray.value
+  store.copy.outputText = refTextHandlerArray.value
       .filter(textHandler => textHandler.activate)
-      .reduce((text, textHandler) => textHandler.executor(text), inputText.value);
+      .reduce((text, textHandler) => textHandler.executor(text), store.copy.inputText);
 }
 
-watch(() => inputText.value, transformText);
+watch(() => store.copy.inputText, transformText);
 watch(() => refTextHandlerArray.value, (ths) => {
   transformText();
-  let handlerOptions: typeof store.storage.handlerOptions = {};
+  let handlerOptions: typeof store.storage.copy.handlerOptions = {};
   ths.map((th, index) => handlerOptions[th.handlerName] = {order: index, activate: th.activate});
-  store.storage.handlerOptions = handlerOptions; // 将顺序和激活状态写入localstorage
+  store.storage.copy.handlerOptions = handlerOptions; // 将顺序和激活状态写入localstorage
 }, {deep: true, immediate: true});
 
 function setTextHandlerArrayToDefault() {
@@ -56,35 +54,35 @@ function setTextHandlerArrayToDefault() {
 }
 
 async function copyInputText(info: string = "复制成功") {
-  await toClipboard(inputText.value);
+  await toClipboard(store.copy.inputText);
   message.success(info);
 }
 
 async function cutInputText() {
-  let outputTextTemp = outputText.value;
+  let outputTextTemp = store.copy.outputText;
   await copyInputText("剪切成功");
-  inputText.value = "";
-  await nextTick(() => outputText.value = outputTextTemp);
+  store.copy.inputText = "";
+  await nextTick(() => store.copy.outputText = outputTextTemp);
 }
 
 function clearInputText() {
-  let outputTextTemp = outputText.value;
-  inputText.value = "";
-  nextTick(() => outputText.value = outputTextTemp);
+  let outputTextTemp = store.copy.outputText;
+  store.copy.inputText = "";
+  nextTick(() => store.copy.outputText = outputTextTemp);
 }
 
 async function copyOutputText(info: string = "复制成功") {
-  await toClipboard(outputText.value);
+  await toClipboard(store.copy.outputText);
   message.success(info);
 }
 
 async function cutOutputText() {
   await copyOutputText("剪切成功");
-  outputText.value = "";
+  store.copy.outputText = "";
 }
 
 const showConfigDrawer = ref(false);
-const tooManyInput = computed(() => inputText.value.length > 500);
+const tooManyInput = computed(() => store.copy.inputText.length > 500);
 
 function introduce() {
   let steps: { element?: Element | null, title?: string, intro?: string, position?: string }[] = [
@@ -152,14 +150,14 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
       <n-gi>
         <n-space :vertical="true">
           <div class="input-area">
-            <GrammarlyEditor v-model:value="inputText" placeholder="输入文本"/>
+            <GrammarlyEditor v-model:value="store.copy.inputText" placeholder="输入文本"/>
           </div>
 
           <div class="button-area">
             <n-space :size="30">
-              <n-button @click="copyInputText()" type="info" :disabled="!inputText">复制</n-button>
-              <n-button @click="cutInputText()" type="warning" :disabled="!inputText">剪切</n-button>
-              <n-button @click="clearInputText()" color="#3f3f3f" :disabled="!inputText">清空</n-button>
+              <n-button @click="copyInputText()" type="info" :disabled="!store.copy.inputText">复制</n-button>
+              <n-button @click="cutInputText()" type="warning" :disabled="!store.copy.inputText">剪切</n-button>
+              <n-button @click="clearInputText()" color="#3f3f3f" :disabled="!store.copy.inputText">清空</n-button>
             </n-space>
           </div>
         </n-space>
@@ -168,13 +166,13 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
       <n-gi>
         <n-space :vertical="true">
           <div class="output-area">
-            <n-input type="textarea" placeholder="输出文本" :show-count="true" size="large" :autosize="true" v-model:value="outputText"></n-input>
+            <n-input type="textarea" placeholder="输出文本" :show-count="true" size="large" :autosize="true" v-model:value="store.copy.outputText"></n-input>
           </div>
           <div class="button-area">
             <n-space :size="30">
-              <n-button @click="copyOutputText()" type="success" :disabled="!outputText">复制</n-button>
-              <n-button @click="cutOutputText()" type="warning" :disabled="!outputText">剪切</n-button>
-              <n-button @click="outputText=''" color="#3f3f3f" :disabled="!outputText">清空</n-button>
+              <n-button @click="copyOutputText()" type="success" :disabled="!store.copy.outputText">复制</n-button>
+              <n-button @click="cutOutputText()" type="warning" :disabled="!store.copy.outputText">剪切</n-button>
+              <n-button @click="store.copy.outputText=''" color="#3f3f3f" :disabled="!store.copy.outputText">清空</n-button>
             </n-space>
           </div>
         </n-space>
