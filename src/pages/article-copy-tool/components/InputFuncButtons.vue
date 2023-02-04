@@ -29,10 +29,11 @@ function clearInputText() {
 
 <template>
   <div class="input-func-buttons">
-    <n-space :size="30">
-      <n-button @click="copyInputText()" type="info" :disabled="!store.copy.inputText">复制</n-button>
-      <n-button @click="cutInputText()" type="warning" :disabled="!store.copy.inputText">剪切</n-button>
-      <n-button @click="clearInputText()" color="#3f3f3f" :disabled="!store.copy.inputText">清空</n-button>
+    <n-space :size="10">
+      <n-button size="large" v-show="store.copy.inputText" @click="copyInputText()" type="info">复制</n-button>
+      <n-button size="large" v-show="store.copy.inputText" @click="cutInputText()" type="warning">剪切</n-button>
+      <n-button size="large" v-show="store.copy.inputText" @click="clearInputText()" color="#3f3f3f">清空</n-button>
+      <n-button size="large" v-show="store.copy.inputText && !store.copy.outputText" @click="store.transformText()" type="success">输出</n-button>
     </n-space>
   </div>
 </template>
