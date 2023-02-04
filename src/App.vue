@@ -11,6 +11,7 @@ const projectUrl = `https://${location.href.indexOf("gitee") > -1 ? "gitee" : "g
 
 const store = useStore();
 const storage = useStorage();
+const bilibiliUrl = "https://www.bilibili.com/video/BV1T24y1X78w/";
 
 watch(() => store.storage, (newStorage) => {
   storage.setStorageSync(LOCAL_STORAGE_KEY, newStorage);
@@ -36,13 +37,17 @@ onBeforeMount(() => {
 
     <CopyrightFooter :project-url="projectUrl" :version="packageJson.version"
                      repo-button-text="查看代码"
-                     bilibili-url="https://www.bilibili.com/video/BV1T24y1X78w/"/>
+                     :bilibili-url="bilibiliUrl">
+      <div>若您遇到问题或有好的建议😊欢迎在<a target="_blank" :href="bilibiliUrl">B站评论区</a>或<a
+          target="_blank" href="https://github.com/laorange/paper-assistant/issues">GitHub</a>留言
+      </div>
+    </CopyrightFooter>
   </n-message-provider>
 </template>
 
 <style>
 main {
   margin: 20px 10vw;
-  min-height: calc(90vh - 100px);
+  min-height: calc(90vh - 130px);
 }
 </style>

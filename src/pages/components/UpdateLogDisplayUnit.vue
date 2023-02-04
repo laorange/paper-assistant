@@ -11,11 +11,6 @@ const showLocal = computed<boolean>({
 
 const updateLog = `
 <div>
-  <p>若您遇到问题或有好的建议😊欢迎在<a target="_blank" href="https://www.bilibili.com/video/BV1T24y1X78w/">B站评论区</a>或<a target="_blank" href="https://github.com/laorange/paper-assistant/issues">GitHub</a>留言</p>
-
-  <hr/>
-
-  <h1>更新日志</h1>
   <h3>v0.3.6 (2023-01-08)</h3>
   <p>优化：剪切和清空输入文本时不再清空输出框
     <a style="text-decoration: none" target="_blank" href="https://www.bilibili.com/video/BV1T24y1X78w/#reply145757356944" title="来自评论区小伙伴的建议">🏷️</a>
