@@ -6,7 +6,12 @@ const store = useStore();
 
 <template>
   <div class="output-area">
-    <n-input type="textarea" placeholder="输出文本" :show-count="true" size="large" :autosize="true" v-model:value="store.copy.outputText"></n-input>
+    <n-input type="textarea"
+             placeholder="输出文本"
+             :show-count="true"
+             size="large"
+             :autosize="{minRows: 5}"
+             v-model:value="store.copy.outputText"/>
   </div>
 </template>
 
