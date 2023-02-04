@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import {GrammarlyEditorPlugin} from "@grammarly/editor-sdk-vue";
 import {computed} from "vue";
-import TextInput from "../article-copy-tool/components/TextInput.vue";
 
 const props = defineProps<{ value: string, placeholder: string }>();
 const emits = defineEmits(["update:value"]);
@@ -13,9 +11,13 @@ const valueLocal = computed<string>({
 </script>
 
 <template>
-  <GrammarlyEditorPlugin clientId="client_FhwfFMz1zFmBVSJvtqjf8f">
-    <TextInput v-model:value="valueLocal" :placeholder="placeholder"/>
-  </GrammarlyEditorPlugin>
+  <n-input ref="inputArea"
+           type="textarea"
+           :show-count="true"
+           :placeholder="placeholder"
+           size="large"
+           :autosize="{minRows: 5}"
+           v-model:value.lazy="valueLocal"/>
 </template>
 
 <style scoped>
