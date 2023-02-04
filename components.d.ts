@@ -7,8 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    CopyrightFooter: typeof import('./src/components/CopyrightFooter.vue')['default']
-    GrammarlyEditor: typeof import('./src/components/GrammarlyEditor.vue')['default']
+    CopyrightFooter: typeof import('./src/pages/components/CopyrightFooter.vue')['default']
+    GrammarlyEditor: typeof import('./src/pages/components/GrammarlyEditor.vue')['default']
     NBadge: typeof import('naive-ui')['NBadge']
     NButton: typeof import('naive-ui')['NButton']
     NDrawer: typeof import('naive-ui')['NDrawer']
@@ -22,6 +22,6 @@ declare module '@vue/runtime-core' {
     NSwitch: typeof import('naive-ui')['NSwitch']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    UpdateLogDisplayUnit: typeof import('./src/components/UpdateLogDisplayUnit.vue')['default']
+    UpdateLogDisplayUnit: typeof import('./src/pages/components/UpdateLogDisplayUnit.vue')['default']
   }
 }

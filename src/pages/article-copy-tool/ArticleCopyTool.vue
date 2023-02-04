@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from "vue";
 import {useStore} from "../../store/useStore";
-import UpdateLogDisplayUnit from "../../components/UpdateLogDisplayUnit.vue";
+import UpdateLogDisplayUnit from "../components/UpdateLogDisplayUnit.vue";
 import InputArea from "./components/InputArea.vue";
 import InputFuncButtons from "./components/InputFuncButtons.vue";
 import OutputArea from "./components/OutputArea.vue";
@@ -10,7 +10,7 @@ import PreferenceConfig from "./components/PreferenceConfig.vue";
 import useIntroducer from "../../assets/ts/article-copy-tool/useIntroducer";
 
 const store = useStore();
-const introduce = useIntroducer();
+const {introduce} = useIntroducer();
 
 const tooManyInput = computed(() => store.copy.inputText.length > 500);
 </script>
@@ -20,7 +20,7 @@ const tooManyInput = computed(() => store.copy.inputText.length > 500);
     <header>
       <h1>文本复制工具</h1>
       <n-space>
-        <n-button id="intro-button" @click="introduce" type="info" :dashed="true">使用说明</n-button>
+        <n-button id="intro-button" @click="introduce()" type="info" :dashed="true">使用说明</n-button>
         <PreferenceConfig/>
         <UpdateLogDisplayUnit v-model:show="store.showUpdateLog"/>
       </n-space>

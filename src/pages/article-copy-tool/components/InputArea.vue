@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useStore} from "../../../store/useStore";
-import GrammarlyEditor from "../../../components/GrammarlyEditor.vue";
+import GrammarlyEditor from "../../components/GrammarlyEditor.vue";
 
 const store = useStore();
 </script>

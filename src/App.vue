@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import ArticleCopyTool from "./router/article-copy-tool/ArticleCopyTool.vue";
-import CopyrightFooter from "./components/CopyrightFooter.vue";
+import CopyrightFooter from "./pages/components/CopyrightFooter.vue";
 import packageJson from "../package.json";
 import {onBeforeMount, watch} from "vue";
 import {useStorage} from "vue3-storage";
@@ -32,7 +31,7 @@ onBeforeMount(() => {
 <template>
   <n-message-provider>
     <main>
-      <ArticleCopyTool/>
+      <router-view/>
     </main>
 
     <CopyrightFooter :project-url="projectUrl" :version="packageJson.version"
