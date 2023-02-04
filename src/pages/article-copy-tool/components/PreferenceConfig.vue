@@ -1,42 +1,20 @@
 <script setup lang="ts">
-import {TextHandler, textHandlers} from "../../../assets/ts/article-copy-tool/handlers";
+import {textHandlers, TextHandlerWithName} from "../../../assets/ts/article-copy-tool/handlers";
 import {ref, watch} from "vue";
 import {useStore} from "../../../store/useStore";
 
 const store = useStore();
+const handlerAmount = store.textHandlerArray.length;
 
-const handlerAmount = Array.from(Object.keys(textHandlers)).length;
+const showConfigDrawer = ref(false);
+const refTextHandlerArray = ref<TextHandlerWithName[]>(store.textHandlerArray);
 
-interface TextHandlerWithName extends TextHandler {
-  handlerName: string;
-}
-
-function getTextHandlerArray(): TextHandlerWithName[] {
-  return Object.entries(textHandlers).map(([handlerName, handler], index) => {
-    return {
-      handlerName: handlerName,
-      handler: {...handler, activate: store.storage.copy.handlerOptions[handlerName]?.activate ?? handler.activate},
-      order: store.storage.copy.handlerOptions[handlerName]?.order ?? handlerAmount + index,
-    };
-  }).sort((a, b) => a.order - b.order).map(data => {
-    return {...data.handler, handlerName: data.handlerName};
-  });
-}
-
-const refTextHandlerArray = ref<TextHandlerWithName[]>(getTextHandlerArray());
-
-function transformText() {
-  store.copy.outputText = refTextHandlerArray.value
-      .filter(textHandler => textHandler.activate)
-      .reduce((text, textHandler) => textHandler.executor(text), store.copy.inputText);
-}
-
-watch(() => store.copy.inputText, transformText);
+watch(() => store.copy.inputText, store.transformText);
 watch(() => refTextHandlerArray.value, (ths) => {
-  transformText();
   let handlerOptions: typeof store.storage.copy.handlerOptions = {};
   ths.map((th, index) => handlerOptions[th.handlerName] = {order: index, activate: th.activate});
   store.storage.copy.handlerOptions = handlerOptions; // 将顺序和激活状态写入localstorage
+  store.transformText();
 }, {deep: true, immediate: true});
 
 function setTextHandlerArrayToDefault() {
@@ -44,8 +22,6 @@ function setTextHandlerArrayToDefault() {
     return {...handler, handlerName};
   });
 }
-
-const showConfigDrawer = ref(false);
 
 function movePositionOfHandler(type: "up" | "down", index: number) {
   let temp: TextHandlerWithName = refTextHandlerArray.value[index];

@@ -1,4 +1,5 @@
 import {defineStore} from "pinia";
+import {textHandlers, TextHandlerWithName} from "../assets/ts/article-copy-tool/handlers";
 
 export interface Storage {
     copy: {
@@ -37,6 +38,24 @@ export const useStore = defineStore("store", {
             },
         };
     },
-    getters: {},
-    actions: {},
+    getters: {
+        textHandlerArray(): TextHandlerWithName[] {
+            return Object.entries(textHandlers).map(([handlerName, handler], index) => {
+                return {
+                    handlerName: handlerName,
+                    handler: {...handler, activate: this.storage.copy.handlerOptions[handlerName]?.activate ?? handler.activate},
+                    order: this.storage.copy.handlerOptions[handlerName]?.order ?? Object.keys(textHandlers).length + index,
+                };
+            }).sort((a, b) => a.order - b.order).map(data => {
+                return {...data.handler, handlerName: data.handlerName};
+            });
+        },
+    },
+    actions: {
+        transformText(): void {
+            this.copy.outputText = Object.values(this.textHandlerArray)
+                .filter(textHandler => textHandler.activate)
+                .reduce((text, textHandler) => textHandler.executor(text), this.copy.inputText);
+        },
+    },
 });
