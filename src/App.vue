@@ -1,32 +1,13 @@
 <script setup lang="ts">
 import CopyrightFooter from "./pages/components/CopyrightFooter.vue";
 import packageJson from "../package.json";
-import {onBeforeMount, watch} from "vue";
-import {useStorage} from "vue3-storage";
-import {useStore, Storage} from "./store/useStore";
-
-const LOCAL_STORAGE_KEY = "PA";
+import useInitiator from "./assets/ts/useInitiator";
+import {onBeforeMount} from "vue";
 
 const projectUrl = `https://${location.href.indexOf("gitee") > -1 ? "gitee" : "github"}.com/laorange/paper-assistant`;
-
-const store = useStore();
-const storage = useStorage();
 const bilibiliUrl = "https://www.bilibili.com/video/BV1T24y1X78w/";
 
-watch(() => store.storage, (newStorage) => {
-  storage.setStorageSync(LOCAL_STORAGE_KEY, newStorage);
-}, {deep: true});
-
-onBeforeMount(() => {
-  let storageNow = storage.getStorageSync<Storage>(LOCAL_STORAGE_KEY);
-  if (!!storageNow && storageNow?.version !== packageJson.version) {
-    // 1. 本地缓存不为空  2.更新版本时 => 1.清除本地缓存 2.弹出更新日志
-    console.log(`版本更新：${storageNow?.version} → ${packageJson.version}`);
-    storageNow = store.storage;
-    store.showUpdateLog = true;
-  }
-  store.storage = {...store.storage, ...storageNow, version: packageJson.version};
-});
+onBeforeMount(useInitiator().initialize);
 </script>
 
 <template>
