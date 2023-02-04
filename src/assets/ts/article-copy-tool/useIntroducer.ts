@@ -2,9 +2,21 @@
 import introJs from "intro.js";
 import {textHandlers} from "./handlers";
 
+interface IntroStep {
+    element?: Element | null,
+    title?: string,
+    intro?: string,
+    position?: string
+}
+
 export default function useIntroducer() {
-    function introduce() {
-        let steps: { element?: Element | null, title?: string, intro?: string, position?: string }[] = [
+    function introduce(pioneerSteps: IntroStep[] = [], tailSteps: IntroStep[] = []) {
+        let steps: IntroStep[] = [
+            {
+                element: document.querySelector(".input-area"),
+                title: "输入框",
+                intro: `请在这里输入内容，程序将根据<strong>偏好设置</strong>进行文本处理。<hr/>此外，如果您:<br/>①输入的是英文<br/>②使用电脑访问<br/>将为您检测语法(基于Grammarly)`,
+            },
             {
                 element: document.querySelector(".preference-config"),
                 title: "偏好设置",
@@ -15,20 +27,21 @@ export default function useIntroducer() {
                 title: "更新日志",
                 intro: "查看本网站的版本迭代过程",
             },
-            {
-                element: document.querySelector(".input-area"),
-                title: "输入框",
-                intro: `请在这里输入内容，程序将根据<strong>偏好设置</strong>进行文本处理。<hr/>此外，如果您:<br/>①输入的是英文<br/>②使用电脑访问<br/>将为您检测语法(基于Grammarly)`,
-            },
-            {
-                element: document.querySelector(".output-area"),
-                title: "输出框",
-                intro: "将在这里输出处理结果",
-            },
         ];
 
+        let outputArea = document.querySelector(".output-area");
+        let outputIntro = {
+            element: outputArea,
+            title: "输出框",
+            intro: outputArea ? "在这里输出处理结果" : "待您输入文本后，将会出现输出框",
+        };
+        steps.push(outputIntro);
+
+        steps = pioneerSteps.concat(steps);
+        steps = steps.concat(tailSteps);
+
         introJs().setOptions({
-            showBullets: false,
+            showBullets: true,
             keyboardNavigation: true,
             disableInteraction: true,
             exitOnOverlayClick: true,
