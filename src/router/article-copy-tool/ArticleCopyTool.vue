@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import useClipboard from "vue-clipboard3";
-import {computed, nextTick, ref, watch} from "vue";
-import {useMessage} from "naive-ui";
+import {computed, ref, watch} from "vue";
 import {TextHandler, textHandlers} from "../../assets/ts/article-copy-tool/handlers";
-import GrammarlyEditor from "../../components/GrammarlyEditor.vue";
 import {useStore} from "../../store/useStore";
 // @ts-ignore
 import introJs from "intro.js";
 import UpdateLogDisplayUnit from "../../components/UpdateLogDisplayUnit.vue";
+import InputArea from "./components/InputArea.vue";
+import InputFuncButtons from "./components/InputFuncButtons.vue";
+import OutputArea from "./components/OutputArea.vue";
+import OutputFuncButtons from "./components/OutputFuncButtons.vue";
 
-const message = useMessage();
-const {toClipboard} = useClipboard();
 const store = useStore();
 
 const handlerAmount = Array.from(Object.keys(textHandlers)).length;
@@ -51,34 +50,6 @@ function setTextHandlerArrayToDefault() {
   refTextHandlerArray.value = Object.entries(textHandlers).map(([handlerName, handler]) => {
     return {...handler, handlerName};
   });
-}
-
-async function copyInputText(info: string = "复制成功") {
-  await toClipboard(store.copy.inputText);
-  message.success(info);
-}
-
-async function cutInputText() {
-  let outputTextTemp = store.copy.outputText;
-  await copyInputText("剪切成功");
-  store.copy.inputText = "";
-  await nextTick(() => store.copy.outputText = outputTextTemp);
-}
-
-function clearInputText() {
-  let outputTextTemp = store.copy.outputText;
-  store.copy.inputText = "";
-  nextTick(() => store.copy.outputText = outputTextTemp);
-}
-
-async function copyOutputText(info: string = "复制成功") {
-  await toClipboard(store.copy.outputText);
-  message.success(info);
-}
-
-async function cutOutputText() {
-  await copyOutputText("剪切成功");
-  store.copy.outputText = "";
 }
 
 const showConfigDrawer = ref(false);
@@ -148,34 +119,13 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
 
     <n-grid :cols="tooManyInput?`1`:`1 800:2`" x-gap="10" y-gap="20">
       <n-gi>
-        <n-space :vertical="true">
-          <div class="input-area">
-            <GrammarlyEditor v-model:value="store.copy.inputText" placeholder="输入文本"/>
-          </div>
-
-          <div class="button-area">
-            <n-space :size="30">
-              <n-button @click="copyInputText()" type="info" :disabled="!store.copy.inputText">复制</n-button>
-              <n-button @click="cutInputText()" type="warning" :disabled="!store.copy.inputText">剪切</n-button>
-              <n-button @click="clearInputText()" color="#3f3f3f" :disabled="!store.copy.inputText">清空</n-button>
-            </n-space>
-          </div>
-        </n-space>
+        <InputArea/>
+        <InputFuncButtons/>
       </n-gi>
 
       <n-gi>
-        <n-space :vertical="true">
-          <div class="output-area">
-            <n-input type="textarea" placeholder="输出文本" :show-count="true" size="large" :autosize="true" v-model:value="store.copy.outputText"></n-input>
-          </div>
-          <div class="button-area">
-            <n-space :size="30">
-              <n-button @click="copyOutputText()" type="success" :disabled="!store.copy.outputText">复制</n-button>
-              <n-button @click="cutOutputText()" type="warning" :disabled="!store.copy.outputText">剪切</n-button>
-              <n-button @click="store.copy.outputText=''" color="#3f3f3f" :disabled="!store.copy.outputText">清空</n-button>
-            </n-space>
-          </div>
-        </n-space>
+        <OutputArea/>
+        <OutputFuncButtons/>
       </n-gi>
     </n-grid>
   </div>
@@ -214,11 +164,5 @@ header {
   flex-direction: column;
   justify-items: center;
   align-items: center;
-}
-
-.button-area {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
 }
 </style>
