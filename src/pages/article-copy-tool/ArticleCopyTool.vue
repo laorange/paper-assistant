@@ -12,7 +12,16 @@ import useIntroducer from "../../assets/ts/article-copy-tool/useIntroducer";
 const store = useStore();
 const {introduce} = useIntroducer();
 
-const tooManyInput = computed(() => store.copy.inputText.length > 500);
+const cols = computed<string>(() => {
+  if (store.copy.inputText.length > 500) {
+    //  输入文本过长，转为在一行显示
+    return `1`;
+  } else if (store.copy.outputText.length === 0) {
+    return `1`;
+  } else {
+    return `1 800:2`;
+  }
+});
 </script>
 
 <template>
@@ -26,13 +35,13 @@ const tooManyInput = computed(() => store.copy.inputText.length > 500);
       </n-space>
     </header>
 
-    <n-grid :cols="tooManyInput?`1`:`1 800:2`" x-gap="10" y-gap="20">
+    <n-grid :cols="cols" x-gap="10" y-gap="20">
       <n-gi>
         <InputArea/>
         <InputFuncButtons/>
       </n-gi>
 
-      <n-gi>
+      <n-gi v-if="store.copy.outputText.length">
         <OutputArea/>
         <OutputFuncButtons/>
       </n-gi>
