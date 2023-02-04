@@ -19,7 +19,7 @@ const cols = computed<string>(() => {
   } else if (store.copy.outputText.length === 0) {
     return `1`;
   } else {
-    return `1 800:2`;
+    return `1 850:2`;
   }
 });
 </script>

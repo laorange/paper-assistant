@@ -7,10 +7,13 @@ const store = useStore();
 
 <template>
     <div class="input-area">
-      <GrammarlyEditor v-model:value="store.copy.inputText" placeholder="输入文本"/>
+      <GrammarlyEditor v-model:value="store.copy.inputText" placeholder="点此输入文本"/>
     </div>
 </template>
 
-<style scoped>
-
+<style>
+.n-input__placeholder {
+  text-align: center !important;
+  font-size: min(10vw, 64px) !important;
+}
 </style>
