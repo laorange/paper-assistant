@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import CopyrightFooter from "./pages/components/CopyrightFooter.vue";
 import packageJson from "../package.json";
-import useInitiator from "./assets/ts/useInitiator";
-import {onBeforeMount} from "vue";
+import Initiator from "./pages/components/Initiator.vue";
 
 const projectUrl = `https://${location.href.indexOf("gitee") > -1 ? "gitee" : "github"}.com/laorange/paper-assistant`;
 const bilibiliUrl = "https://www.bilibili.com/video/BV1T24y1X78w/";
-
-onBeforeMount(useInitiator().initialize);
 </script>
 
 <template>
@@ -23,6 +20,8 @@ onBeforeMount(useInitiator().initialize);
           target="_blank" href="https://github.com/laorange/paper-assistant/issues">GitHub</a>留言
       </div>
     </CopyrightFooter>
+
+    <Initiator/>
   </n-message-provider>
 </template>
 
