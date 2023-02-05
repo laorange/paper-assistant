@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from "vue";
 import {useStore} from "../../store/useStore";
-import UpdateLogDisplayUnit from "../components/UpdateLogDisplayUnit.vue";
+import UpdateLogDisplayUnit from "../components/UpdatedLogDisplayUnit.vue";
 import InputArea from "./components/InputArea.vue";
 import InputFuncButtons from "./components/InputFuncButtons.vue";
 import OutputArea from "./components/OutputArea.vue";

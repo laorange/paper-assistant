@@ -3,7 +3,7 @@
   "private": false,
   "author": "laorange",
   "license": "AGPL-3.0",
-  "version": "0.3.6",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@grammarly/editor-sdk-vue": "^2.3.0",
-    "@laorange/copyright-footer": "^0.1.4",
     "intro.js": "^6.0.0",
     "pinia": "^2.0.28",
     "vue": "^3.2.37",
@@ -30,6 +29,7 @@
     "unplugin-vue-components": "^0.22.4",
     "vite": "^3.0.6",
     "vite-plugin-singlefile": "^0.13.2",
+    "vite-plugin-vue-markdown": "^0.22.2",
     "vue-tsc": "^0.39.5"
   }
 }
