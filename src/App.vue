@@ -9,19 +9,21 @@ const bilibiliUrl = "https://www.bilibili.com/video/BV1T24y1X78w/";
 
 <template>
   <n-message-provider>
-    <main>
-      <router-view/>
-    </main>
+    <n-notification-provider placement="top-left">
+      <main>
+        <router-view/>
+      </main>
 
-    <CopyrightFooter :project-url="projectUrl" :version="packageJson.version"
-                     repo-button-text="查看代码"
-                     :bilibili-url="bilibiliUrl">
-      <div>若您遇到问题或有好的建议😊欢迎在<a target="_blank" :href="bilibiliUrl">B站评论区</a>或<a
-          target="_blank" href="https://github.com/laorange/paper-assistant/issues">GitHub</a>留言
-      </div>
-    </CopyrightFooter>
+      <CopyrightFooter :project-url="projectUrl" :version="packageJson.version"
+                       repo-button-text="查看代码"
+                       :bilibili-url="bilibiliUrl">
+        <div>若您遇到问题或有好的建议😊欢迎在<a target="_blank" :href="bilibiliUrl">B站评论区</a>或<a
+            target="_blank" href="https://github.com/laorange/paper-assistant/issues">GitHub</a>留言
+        </div>
+      </CopyrightFooter>
 
-    <Initiator/>
+      <Initiator/>
+    </n-notification-provider>
   </n-message-provider>
 </template>
 
