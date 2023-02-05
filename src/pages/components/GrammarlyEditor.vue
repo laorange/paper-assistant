@@ -3,7 +3,7 @@ import {GrammarlyEditorPlugin} from "@grammarly/editor-sdk-vue";
 import {computed} from "vue";
 import TextInput from "../article-copy-tool/components/TextInput.vue";
 
-const props = defineProps<{ value: string, placeholder: string }>();
+const props = defineProps<{ value: string, placeholder: string, focus?: boolean }>();
 const emits = defineEmits(["update:value"]);
 
 const valueLocal = computed<string>({
@@ -14,7 +14,7 @@ const valueLocal = computed<string>({
 
 <template>
   <GrammarlyEditorPlugin clientId="client_FhwfFMz1zFmBVSJvtqjf8f">
-    <TextInput v-model:value="valueLocal" :placeholder="placeholder"/>
+    <TextInput v-model:value="valueLocal" :placeholder="placeholder" :focus="!!focus"/>
   </GrammarlyEditorPlugin>
 </template>
 
