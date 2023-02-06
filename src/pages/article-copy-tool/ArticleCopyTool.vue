@@ -27,7 +27,7 @@ const cols = computed<string>(() => {
 <template>
   <div class="article-copy-tool">
     <header>
-      <h1>文本复制工具</h1>
+      <h1>论文工具</h1>
       <n-space wrap="wrap" justify="center">
         <n-space>
           <HelpButton/>
