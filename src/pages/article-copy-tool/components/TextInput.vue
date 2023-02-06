@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {computed, onMounted, ref} from "vue";
+import {computed, onBeforeUnmount, onMounted, ref} from "vue";
 
-const props = defineProps<{ value: string, placeholder: string, focus?: boolean }>();
+const props = defineProps<{ value: string, placeholder: string, focus?: boolean, handleSelection?: boolean }>();
 const emits = defineEmits(["update:value"]);
 
 const valueLocal = computed<string>({
@@ -15,11 +15,21 @@ function focus() {
   if (props.focus) innerInputArea?.value?.focus();
 }
 
+function getRangeString(_?: Event) {
+  let selection = document.getSelection()?.toString() ?? "";
+  console.log(selection); // TODO 处理选中的文本
+}
+
 onMounted(() => {
   if (props.focus) focus();
+  if (props.handleSelection) innerInputArea?.value?.$el?.addEventListener("select", getRangeString);
 });
 
-defineExpose({focus})
+onBeforeUnmount(() => {
+  if (props.handleSelection) innerInputArea?.value?.$el?.removeEventListener("select", getRangeString);
+});
+
+defineExpose({focus});
 </script>
 
 <template>

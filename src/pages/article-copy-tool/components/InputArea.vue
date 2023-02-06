@@ -7,7 +7,7 @@ const store = useStore();
 
 <template>
   <div class="input-area">
-    <GrammarlyEditor v-model:value="store.copy.inputText" placeholder="在此输入文本" :focus="true"/>
+    <GrammarlyEditor v-model:value="store.copy.inputText" placeholder="在此输入文本" focus handle-selection/>
   </div>
 </template>
 

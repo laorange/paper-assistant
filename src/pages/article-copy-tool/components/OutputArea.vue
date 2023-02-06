@@ -7,7 +7,7 @@ const store = useStore();
 
 <template>
   <div class="output-area">
-    <TextInput placeholder="输出文本" v-model:value="store.copy.outputText"/>
+    <TextInput placeholder="输出文本" v-model:value="store.copy.outputText" handle-selection/>
   </div>
 </template>
 
