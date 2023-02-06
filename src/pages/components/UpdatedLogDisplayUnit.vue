@@ -12,7 +12,7 @@ const showLocal = computed<boolean>({
 </script>
 
 <template>
-  <n-button class="show-update-log-button" @click="showLocal=true" color="#3f3f3f" :dashed="true">更新日志</n-button>
+  <n-button class="show-update-log-button" @click="showLocal=true" type="info" :dashed="true">更新日志</n-button>
 
   <n-drawer v-model:show="showLocal" height="80%" placement="bottom">
     <n-drawer-content title="更新日志" :closable="true">

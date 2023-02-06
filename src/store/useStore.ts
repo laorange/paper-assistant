@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import {textHandlers, TextHandlerWithName} from "../assets/ts/article-copy-tool/handlers";
+import {useOsTheme} from "naive-ui";
 
 export interface Storage {
     copy: {
@@ -8,9 +9,12 @@ export interface Storage {
                 activate: boolean,
                 order: number
             }
-        };
-    };
-    version: string;
+        },
+        singleColumn: boolean,
+        autoOutput: boolean,
+    },
+    version: string,
+    darkMode: boolean,
 }
 
 export interface State {
@@ -19,7 +23,7 @@ export interface State {
     copy: {
         inputText: string,
         outputText: string,
-    }
+    },
 }
 
 export const useStore = defineStore("store", {
@@ -28,8 +32,11 @@ export const useStore = defineStore("store", {
             storage: {
                 copy: {
                     handlerOptions: {},
+                    singleColumn: false,
+                    autoOutput: false,
                 },
                 version: "",
+                darkMode: useOsTheme().value === "dark",
             },
             showUpdateLog: false,
             copy: {

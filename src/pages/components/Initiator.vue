@@ -19,6 +19,7 @@ class ProjectInitiator {
 
   constructor() {
     this.watchStorage();
+    this.watchDarkMode();
 
     this.storage = storage.getStorageSync<Storage>(LOCAL_STORAGE_KEY) ?? this.useNewComerHook();
     this.previousStorage = JSON.parse(JSON.stringify(this.storage));
@@ -35,6 +36,20 @@ class ProjectInitiator {
     watch(() => store.storage, (newStorage) => {
       storage.setStorageSync(LOCAL_STORAGE_KEY, newStorage);
     }, {deep: true});
+  }
+
+  watchDarkMode() {
+    watch(() => store.storage.darkMode, (darkMode) => {
+      let classList = document.body.classList;
+      console.log("store.storage.darkMode", store.storage.darkMode);
+      if (darkMode) {
+        // import("intro.js/themes/introjs-dark.css");
+        classList.add("dark")
+      }else {
+        // import("intro.js/introjs.css");
+        classList.remove("dark")
+      }
+    }, {immediate: true});
   }
 
   useNewComerHook(): Storage {

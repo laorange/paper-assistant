@@ -32,7 +32,7 @@ function clearInputText() {
     <n-space :size="10">
       <n-button size="large" v-show="store.copy.inputText" @click="copyInputText()" type="info">复制</n-button>
       <n-button size="large" v-show="store.copy.inputText" @click="cutInputText()" type="warning">剪切</n-button>
-      <n-button size="large" v-show="store.copy.inputText" @click="clearInputText()" color="#3f3f3f">清空</n-button>
+      <n-button size="large" v-show="store.copy.inputText" @click="clearInputText()" color="#808080">清空</n-button>
       <n-button size="large" v-show="store.copy.inputText && !store.copy.outputText" @click="store.transformText()" type="success">输出</n-button>
     </n-space>
   </div>

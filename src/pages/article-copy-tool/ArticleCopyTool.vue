@@ -8,6 +8,7 @@ import OutputArea from "./components/OutputArea.vue";
 import OutputFuncButtons from "./components/OutputFuncButtons.vue";
 import TextHandlerConfig from "./components/TextHandlerConfig.vue";
 import useIntroducer from "../../assets/ts/article-copy-tool/useIntroducer";
+import ThemeConfig from "./components/ThemeConfig.vue";
 
 const store = useStore();
 const {introduce} = useIntroducer();
@@ -28,10 +29,15 @@ const cols = computed<string>(() => {
   <div class="article-copy-tool">
     <header>
       <h1>文本复制工具</h1>
-      <n-space>
-        <n-button id="intro-button" @click="introduce()" type="info" :dashed="true">使用说明</n-button>
-        <TextHandlerConfig/>
-        <UpdateLogDisplayUnit v-model:show="store.showUpdateLog"/>
+      <n-space wrap="wrap" justify="center">
+        <n-space>
+          <n-button id="intro-button" @click="introduce()" type="info" :dashed="true">使用说明</n-button>
+          <UpdateLogDisplayUnit v-model:show="store.showUpdateLog"/>
+        </n-space>
+        <n-space>
+          <TextHandlerConfig/>
+          <ThemeConfig/>
+        </n-space>
       </n-space>
     </header>
 

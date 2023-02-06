@@ -13,19 +13,24 @@ export default function useIntroducer() {
     function introduce(pioneerSteps: IntroStep[] = [], tailSteps: IntroStep[] = []) {
         let steps: IntroStep[] = [
             {
-                element: document.querySelector(".input-area"),
-                title: "输入框",
-                intro: `请在这里输入内容，程序将根据<strong>功能设置</strong>进行文本处理。<hr/>此外，如果您:<br/>①输入的是英文<br/>②使用电脑访问<br/>将为您检测语法(基于Grammarly)`,
-            },
-            {
                 element: document.querySelector(".text-handler-config"),
                 title: "功能设置",
                 intro: `按需启用功能。目前您可以选择:<p>${Object.values(textHandlers).map((h, i) => `${i + 1}. ` + h.description).join("<br/>")}</p>`,
             },
             {
+                element: document.querySelector(".theme-config-button"),
+                title: "变更主题",
+                intro: "切换网页主题为深色或浅色",
+            },
+            {
                 element: document.querySelector(".show-update-log-button"),
                 title: "更新日志",
                 intro: "查看本网站的版本迭代过程",
+            },
+            {
+                element: document.querySelector(".input-area"),
+                title: "输入框",
+                intro: `请在这里输入内容，程序将根据<strong>功能设置</strong>进行文本处理。<hr/>此外，如果您:<br/>①输入的是英文<br/>②使用电脑访问<br/>将为您检测语法(基于Grammarly)`,
             },
         ];
 

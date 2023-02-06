@@ -27,7 +27,7 @@ function clearOutputText() {
     <n-space :size="10">
       <n-button size="large" @click="copyOutputText()" type="info" v-show="store.copy.outputText">复制</n-button>
       <n-button size="large" @click="cutOutputText()" type="warning" v-show="store.copy.outputText">剪切</n-button>
-      <n-button size="large" @click="clearOutputText()" color="#3f3f3f" v-show="store.copy.outputText">清空</n-button>
+      <n-button size="large" @click="clearOutputText()" color="#808080" v-show="store.copy.outputText">清空</n-button>
     </n-space>
   </div>
 </template>
