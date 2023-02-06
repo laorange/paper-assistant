@@ -2,6 +2,7 @@
 import CopyrightFooter from "./pages/components/CopyrightFooter.vue";
 import packageJson from "../package.json";
 import Initiator from "./pages/components/Initiator.vue";
+import ArticleCopyTool from "./pages/article-copy-tool/ArticleCopyTool.vue";
 import {darkTheme} from "naive-ui";
 import {computed} from "vue";
 import {useStore} from "./store/useStore";
@@ -19,7 +20,7 @@ const theme = computed(() => store.storage.darkMode ? darkTheme : null);
     <n-message-provider>
       <n-notification-provider placement="top-left">
         <main>
-          <router-view/>
+          <ArticleCopyTool/>
         </main>
 
         <CopyrightFooter :project-url="projectUrl" :version="packageJson.version"

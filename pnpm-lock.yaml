@@ -19,7 +19,6 @@ specifiers:
   vite-plugin-vue-markdown: ^0.22.2
   vue: ^3.2.37
   vue-clipboard3: ^2.0.0
-  vue-router: '4'
   vue-tsc: ^0.39.5
   vue3-storage: ^0.1.11
   vuedraggable: ^4.1.0
@@ -32,7 +31,6 @@ dependencies:
   pinia: 2.0.28_mgnvym7yiazkylwwogi5r767ue
   vue: 3.2.45
   vue-clipboard3: 2.0.0
-  vue-router: 4.1.6_vue@3.2.45
   vue3-storage: 0.1.11_vue@3.2.45
   vuedraggable: 4.1.0_vue@3.2.45
 
