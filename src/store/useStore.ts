@@ -15,6 +15,11 @@ export interface Storage {
     },
     version: string,
     darkMode: boolean,
+    releasedInfo: {
+        time: number,
+        version: string,
+        body: string,
+    },
 }
 
 export interface State {
@@ -37,6 +42,11 @@ export const useStore = defineStore("store", {
                 },
                 version: "",
                 darkMode: useOsTheme().value === "dark",
+                releasedInfo: {
+                    time: 0,
+                    version: "",
+                    body: "",
+                },
             },
             showUpdateLog: false,
             copy: {

@@ -6,10 +6,10 @@ import {computed} from "vue";
 const props = withDefaults(
     defineProps<{
       markdown: string,
-      html: boolean,
-      linkify: boolean,
-      typographer: boolean,
-      breaks: boolean,
+      html?: boolean,
+      linkify?: boolean,
+      typographer?: boolean,
+      breaks?: boolean,
     }>(),
     {
       html: true,
@@ -41,7 +41,15 @@ const result = computed(() => markdownIt.render(props.markdown));
 
   * {
     margin: 0;
+    padding: 0;
   }
 
+  ul {
+    margin: -20px auto;
+  }
+
+  li {
+    margin-left: 15px;
+  }
 }
 </style>

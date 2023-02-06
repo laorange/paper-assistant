@@ -18,7 +18,7 @@ const theme = computed(() => store.storage.darkMode ? darkTheme : null);
 <template>
   <n-config-provider :theme="theme">
     <n-message-provider>
-      <n-notification-provider placement="top-left">
+      <n-notification-provider placement="top-left" :max="3">
         <main>
           <ArticleCopyTool/>
         </main>
