@@ -3,6 +3,7 @@ import {textHandlers, TextHandlerWithName} from "../../../assets/ts/article-copy
 import {ref, watch} from "vue";
 import {useStore} from "../../../store/useStore";
 import Draggable from "vuedraggable";
+import {SettingsSharp} from "@vicons/ionicons5";
 
 const store = useStore();
 
@@ -31,7 +32,14 @@ function turnOffAllTextHandler() {
 <template>
   <div class="text-handler-config">
     <n-badge :value="`${refTextHandlerArray.filter(h=>h.activate).length}/${refTextHandlerArray.length}`" type="success">
-      <n-button id="config-button" @click="showConfigDrawer = true" type="success" :dashed="true">功能设置</n-button>
+      <n-button id="config-button" @click="showConfigDrawer = true" type="success" :dashed="true">
+        <template #icon>
+          <n-icon>
+            <SettingsSharp/>
+          </n-icon>
+        </template>
+        功能设置
+      </n-button>
     </n-badge>
   </div>
 

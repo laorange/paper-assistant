@@ -7,11 +7,10 @@ import InputFuncButtons from "./components/InputFuncButtons.vue";
 import OutputArea from "./components/OutputArea.vue";
 import OutputFuncButtons from "./components/OutputFuncButtons.vue";
 import TextHandlerConfig from "./components/TextHandlerConfig.vue";
-import useIntroducer from "../../assets/ts/article-copy-tool/useIntroducer";
 import ThemeConfig from "./components/ThemeConfig.vue";
+import HelpButton from "./components/HelpButton.vue";
 
 const store = useStore();
-const {introduce} = useIntroducer();
 
 const cols = computed<string>(() => {
   if (store.copy.inputText.length > 500) {
@@ -31,12 +30,12 @@ const cols = computed<string>(() => {
       <h1>文本复制工具</h1>
       <n-space wrap="wrap" justify="center">
         <n-space>
-          <n-button id="intro-button" @click="introduce()" type="info" :dashed="true">使用说明</n-button>
-          <UpdateLogDisplayUnit v-model:show="store.showUpdateLog"/>
+          <HelpButton/>
+          <TextHandlerConfig/>
         </n-space>
         <n-space>
-          <TextHandlerConfig/>
           <ThemeConfig/>
+          <UpdateLogDisplayUnit v-model:show="store.showUpdateLog"/>
         </n-space>
       </n-space>
     </header>
