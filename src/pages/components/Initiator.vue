@@ -5,11 +5,14 @@ import {useStorage} from "vue3-storage";
 import packageJson from "../../../package.json";
 import {useNotification, NButton} from "naive-ui";
 import useIntroducer from "../../assets/ts/article-copy-tool/useIntroducer";
+import axios from "axios";
+import MarkdownParser from "./MarkdownParser.vue";
 
 const store = useStore();
 const storage = useStorage();
 const notification = useNotification();
 const {introduce} = useIntroducer();
+
 const LOCAL_STORAGE_KEY = "PA";
 
 class ProjectInitiator {
@@ -30,6 +33,7 @@ class ProjectInitiator {
     }
 
     this.updateStorageInPinia();
+    if (import.meta.env.MODE !== "development") this.checkReleasedVersion();  // 在非调试模式下，查询是否为最新版本
   }
 
   watchStorage() {
@@ -42,13 +46,8 @@ class ProjectInitiator {
     watch(() => store.storage.darkMode, (darkMode) => {
       let classList = document.body.classList;
       console.log("store.storage.darkMode", store.storage.darkMode);
-      if (darkMode) {
-        // import("intro.js/themes/introjs-dark.css");
-        classList.add("dark")
-      }else {
-        // import("intro.js/introjs.css");
-        classList.remove("dark")
-      }
+      if (darkMode) classList.add("dark");
+      else classList.remove("dark");
     }, {immediate: true});
   }
 
@@ -89,6 +88,23 @@ class ProjectInitiator {
 
   updateStorageInPinia() {
     store.storage = {...store.storage, ...this.storage, version: packageJson.version};
+  }
+
+  async checkReleasedVersion() {
+    const RELEASED_API_URL = "https://gitee.com/api/v5/repos/laorange/paper-assistant/releases/latest";
+    try {
+      let apiData = (await axios.get(RELEASED_API_URL)).data;
+      let latestVersion = (apiData?.tag_name?.replace("v", "") ?? "") as string;
+      if (latestVersion !== packageJson.version) {
+        notification.warning({
+          title: "🎉新版本已发布",
+          description: `当前版本：v${packageJson.version}，最新版本：v${latestVersion}`,
+          content: () => h(MarkdownParser, {markdown: apiData?.body ?? ""}),
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
 
