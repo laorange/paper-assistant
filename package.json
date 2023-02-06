@@ -18,7 +18,8 @@
     "vue": "^3.2.37",
     "vue-clipboard3": "^2.0.0",
     "vue-router": "4",
-    "vue3-storage": "^0.1.11"
+    "vue3-storage": "^0.1.11",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.2",

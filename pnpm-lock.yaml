@@ -18,6 +18,7 @@ specifiers:
   vue-router: '4'
   vue-tsc: ^0.39.5
   vue3-storage: ^0.1.11
+  vuedraggable: ^4.1.0
 
 dependencies:
   '@grammarly/editor-sdk-vue': 2.3.1_vue@3.2.45
@@ -27,6 +28,7 @@ dependencies:
   vue-clipboard3: 2.0.0
   vue-router: 4.1.6_vue@3.2.45
   vue3-storage: 0.1.11_vue@3.2.45
+  vuedraggable: 4.1.0_vue@3.2.45
 
 devDependencies:
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
@@ -1123,6 +1125,10 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
+  /sortablejs/1.14.0:
+    resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==}
+    dev: false
+
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -1407,6 +1413,15 @@ packages:
       vue: 3.2.45
       vue-class-component: 8.0.0-rc.1_vue@3.2.45
       vue-router: 4.1.6_vue@3.2.45
+    dev: false
+
+  /vuedraggable/4.1.0_vue@3.2.45:
+    resolution: {integrity: sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==}
+    peerDependencies:
+      vue: ^3.0.1
+    dependencies:
+      sortablejs: 1.14.0
+      vue: 3.2.45
     dev: false
 
   /vueuc/0.4.49_vue@3.2.45:
