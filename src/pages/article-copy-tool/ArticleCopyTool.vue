@@ -6,7 +6,7 @@ import InputArea from "./components/InputArea.vue";
 import InputFuncButtons from "./components/InputFuncButtons.vue";
 import OutputArea from "./components/OutputArea.vue";
 import OutputFuncButtons from "./components/OutputFuncButtons.vue";
-import PreferenceConfig from "./components/PreferenceConfig.vue";
+import TextHandlerConfig from "./components/TextHandlerConfig.vue";
 import useIntroducer from "../../assets/ts/article-copy-tool/useIntroducer";
 
 const store = useStore();
@@ -30,7 +30,7 @@ const cols = computed<string>(() => {
       <h1>文本复制工具</h1>
       <n-space>
         <n-button id="intro-button" @click="introduce()" type="info" :dashed="true">使用说明</n-button>
-        <PreferenceConfig/>
+        <TextHandlerConfig/>
         <UpdateLogDisplayUnit v-model:show="store.showUpdateLog"/>
       </n-space>
     </header>

@@ -15,11 +15,11 @@ export default function useIntroducer() {
             {
                 element: document.querySelector(".input-area"),
                 title: "输入框",
-                intro: `请在这里输入内容，程序将根据<strong>偏好设置</strong>进行文本处理。<hr/>此外，如果您:<br/>①输入的是英文<br/>②使用电脑访问<br/>将为您检测语法(基于Grammarly)`,
+                intro: `请在这里输入内容，程序将根据<strong>功能设置</strong>进行文本处理。<hr/>此外，如果您:<br/>①输入的是英文<br/>②使用电脑访问<br/>将为您检测语法(基于Grammarly)`,
             },
             {
-                element: document.querySelector(".preference-config"),
-                title: "偏好设置",
+                element: document.querySelector(".text-handler-config"),
+                title: "功能设置",
                 intro: `按需启用功能。目前您可以选择:<p>${Object.values(textHandlers).map((h, i) => `${i + 1}. ` + h.description).join("<br/>")}</p>`,
             },
             {

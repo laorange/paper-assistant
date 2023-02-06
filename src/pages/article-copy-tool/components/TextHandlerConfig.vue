@@ -32,14 +32,14 @@ function movePositionOfHandler(type: "up" | "down", index: number) {
 </script>
 
 <template>
-  <div class="preference-config">
+  <div class="text-handler-config">
     <n-badge :value="`${refTextHandlerArray.filter(h=>h.activate).length}/${refTextHandlerArray.length}`" type="success">
-      <n-button id="config-button" @click="showConfigDrawer = true" type="success" :dashed="true">偏好设置</n-button>
+      <n-button id="config-button" @click="showConfigDrawer = true" type="success" :dashed="true">功能设置</n-button>
     </n-badge>
   </div>
 
   <n-drawer v-model:show="showConfigDrawer" :height="`${Object.keys(textHandlers).length * 40 + 100}px`" placement="bottom">
-    <n-drawer-content title="偏好设置" :closable="true">
+    <n-drawer-content title="功能设置" :closable="true">
       <n-space justify="center" align="center" :vertical="true">
         <n-space style="height: 100%" :vertical="true" justify="center" align="end" :size="2">
           <n-form-item v-for="(textHandler, index) of refTextHandlerArray" :key="`textHandler-${textHandler.description}`"
