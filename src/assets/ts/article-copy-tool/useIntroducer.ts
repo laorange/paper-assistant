@@ -10,8 +10,32 @@ interface IntroStep {
 }
 
 export default function useIntroducer() {
+    function introduceBySteps(steps: IntroStep[], options?: Object) {
+        introJs().setOptions({
+            showBullets: true,
+            keyboardNavigation: true,
+            disableInteraction: true,
+            exitOnOverlayClick: true,
+            prevLabel: "上一步",
+            nextLabel: "下一步",
+            doneLabel: "完成",
+            autoPosition: true,
+            steps,
+            ...(options ?? {}),
+        }).start();
+    }
+
     function introduce(pioneerSteps: IntroStep[] = [], tailSteps: IntroStep[] = []) {
-        let steps: IntroStep[] = [
+        let steps: IntroStep[] = [];
+
+        if (document.body.clientWidth > 500) {
+            steps.push({
+                title: "提示",
+                intro: `如果您正在使用电脑💻<br/>可以使用方向键 → 跳转到下一步`,
+            });
+        }
+
+        steps = steps.concat([
             {
                 element: document.querySelector(".text-handler-config"),
                 title: "功能设置",
@@ -30,9 +54,9 @@ export default function useIntroducer() {
             {
                 element: document.querySelector(".input-area"),
                 title: "输入框",
-                intro: `请在这里输入内容，程序将根据<strong>功能设置</strong>进行文本处理。<hr/>此外，如果您:<br/>①输入的是英文<br/>②使用电脑访问<br/>将为您检测语法(基于Grammarly)`,
+                intro: `请在这里输入内容，程序将根据<strong>功能设置</strong>进行文本处理。<hr/>如果您使用电脑访问，在输入英文时，将为您检查语法✍`,
             },
-        ];
+        ]);
 
         let outputArea = document.querySelector(".output-area");
         let outputIntro = {
@@ -45,18 +69,49 @@ export default function useIntroducer() {
         steps = pioneerSteps.concat(steps);
         steps = steps.concat(tailSteps);
 
-        introJs().setOptions({
-            showBullets: true,
-            keyboardNavigation: true,
-            disableInteraction: true,
-            exitOnOverlayClick: true,
-            prevLabel: "上一步",
-            nextLabel: "下一步",
-            doneLabel: "完成",
-            autoPosition: true,
-            steps,
-        }).start();
+        introduceBySteps(steps);
     }
 
-    return {introduce};
+    function introduceTextHandler() {
+        let textHandlerDrawer = document.querySelector(".text-handler-drawer-content") as HTMLElement | undefined;
+
+        let steps: IntroStep[] = [
+            {
+                element: textHandlerDrawer?.querySelector(".text-handler-card"),
+                title: "功能卡片",
+                intro: `点击卡片可开启/关闭该功能<br/>拖拽卡片可控制功能的执行顺序（从上至下依次执行）`,
+            },
+            {
+                element: textHandlerDrawer?.querySelector(".to-default-button"),
+                title: "恢复为默认值",
+                intro: `点击该按钮可将所有功能的状态、执行顺序重置为默认值`,
+            },
+            {
+                element: textHandlerDrawer?.querySelector(".turn-off-button"),
+                title: "全部关闭",
+                intro: `点击该按钮可一键禁用所有功能`,
+            },
+            {
+                element: textHandlerDrawer?.querySelector(".finish-config-button"),
+                title: "完成设置",
+                intro: `当完成设置后，可点击该按钮快速退出当前的功能设置窗口`,
+            },
+        ];
+
+        introduceBySteps(steps);
+    }
+
+    function introduceSelectionReplace() {
+        let steps: IntroStep[] = [
+            {
+                element: document.querySelector(".add-selection-replace-button"),
+                title: "文本替换",
+                intro: `在文本框中划词时，可触发文本替换功能。您可以指定替换目标文本。在点击"启用"后，输入框中所有相同的本文均会被替换。<hr/>该功能设计初衷是为了快速删除PDF复制文本时出现的乱码。`,
+            },
+        ];
+
+        introduceBySteps(steps, {showBullets: false});
+    }
+
+    return {introduce, introduceTextHandler, introduceSelectionReplace};
 };

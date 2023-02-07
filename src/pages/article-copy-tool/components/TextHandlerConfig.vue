@@ -3,9 +3,11 @@ import {textHandlers, TextHandlerWithName} from "../../../assets/ts/article-copy
 import {ref, watch} from "vue";
 import {useStore} from "../../../store/useStore";
 import Draggable from "vuedraggable";
-import {SettingsSharp} from "@vicons/ionicons5";
+import {SettingsSharp, HelpCircle} from "@vicons/ionicons5";
+import useIntroducer from "../../../assets/ts/article-copy-tool/useIntroducer";
 
 const store = useStore();
+const {introduceTextHandler} = useIntroducer();
 
 const showConfigDrawer = ref(false);
 const refTextHandlerArray = ref<TextHandlerWithName[]>(store.textHandlerArray);
@@ -44,27 +46,41 @@ function turnOffAllTextHandler() {
   </div>
 
   <n-drawer v-model:show="showConfigDrawer" :height="`${Object.keys(textHandlers).length * 50 + 125}px`" placement="bottom">
-    <n-drawer-content title="功能设置" :closable="true">
-      <n-space justify="center" align="center" :vertical="true">
-        <n-space style="height: 100%" :vertical="true" justify="center" align="end" :size="2">
-          <Draggable v-model="refTextHandlerArray" item-key="handlerName">
-            <template #item="{element}">
-              <div class="text-handler-card" @click="element.activate = !element.activate">
-                <n-space :size="10" justify="start">
-                  <n-switch :value="element.activate"/>
-                  <div> {{ element.description }}</div>
-                </n-space>
-              </div>
-            </template>
-          </Draggable>
+    <n-drawer-content :closable="true">
+      <template #header>
+        <n-space align="center">
+          <div>功能设置</div>
+          <n-button type="info" size="small" round @click="introduceTextHandler">
+            <n-icon size="18">
+              <HelpCircle/>
+            </n-icon>
+            &nbsp;使用说明
+          </n-button>
         </n-space>
+      </template>
 
-        <n-space>
-          <n-button type="info" size="small" @click="setTextHandlerArrayToDefault()">恢复为默认值</n-button>
-          <n-button type="warning" size="small" @click="turnOffAllTextHandler()">全部关闭</n-button>
-          <n-button type="success" size="small" @click="showConfigDrawer=false">完成设置</n-button>
+      <div class="text-handler-drawer-content">
+        <n-space justify="center" align="center" :vertical="true">
+          <n-space style="height: 100%" :vertical="true" justify="center" align="end" :size="2">
+            <Draggable v-model="refTextHandlerArray" item-key="handlerName">
+              <template #item="{element}">
+                <div class="text-handler-card" @click="element.activate = !element.activate">
+                  <n-space :size="10" justify="start">
+                    <n-switch :value="element.activate"/>
+                    <div> {{ element.description }}</div>
+                  </n-space>
+                </div>
+              </template>
+            </Draggable>
+          </n-space>
+
+          <n-space>
+            <n-button class="to-default-button" type="info" size="small" @click="setTextHandlerArrayToDefault()">恢复为默认值</n-button>
+            <n-button class="turn-off-button" type="warning" size="small" @click="turnOffAllTextHandler()">全部关闭</n-button>
+            <n-button class="finish-config-button" type="success" size="small" @click="showConfigDrawer=false">完成设置</n-button>
+          </n-space>
         </n-space>
-      </n-space>
+      </div>
     </n-drawer-content>
   </n-drawer>
 </template>
