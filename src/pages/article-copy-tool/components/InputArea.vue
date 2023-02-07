@@ -11,9 +11,11 @@ const store = useStore();
   </div>
 </template>
 
-<style>
-.n-input__placeholder {
-  text-align: center !important;
-  font-size: min(10vw, 64px) !important;
+<style lang="scss">
+.input-area {
+  .n-input__placeholder {
+    text-align: center !important;
+    font-size: min(10vw, 64px) !important;
+  }
 }
 </style>
