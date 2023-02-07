@@ -8,6 +8,10 @@ export interface TextHandlers {
     [handlerName: string]: TextHandler;
 }
 
+export interface TextHandlerWithName extends TextHandler {
+    handlerName: string;
+}
+
 export type ReplaceTuple = [RegExp | string, string]
 
 export const textHandlers: TextHandlers = {

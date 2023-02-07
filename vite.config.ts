@@ -1,6 +1,7 @@
 import {defineConfig} from "vite";
 import vue from "@vitejs/plugin-vue";
 
+import Markdown from "vite-plugin-vue-markdown";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import {ElementPlusResolver, NaiveUiResolver, VantResolver} from "unplugin-vue-components/resolvers";
@@ -17,7 +18,8 @@ export default defineConfig(config => {
             Components({
                 resolvers: [ElementPlusResolver(), NaiveUiResolver(), VantResolver()],
             }),
-            vue(),
+            vue({include: [/\.vue$/, /\.md$/]}),
+            Markdown(),
             config.mode === "single-file" ? viteSingleFile() : undefined,
         ],
     };

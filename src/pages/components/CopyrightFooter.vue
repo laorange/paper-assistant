@@ -100,19 +100,19 @@ function goTo(url: string) {
                 <img alt="qr.jpg" :src="qrUrl"/>
                 <n-space class="copyright-text-content" :size="10" :vertical="true" justify="center" align="center">
                   <n-space :size="30">
-                    <n-button color="#32647d" size="tiny" v-if="projectUrl" @click="goTo(projectUrl ?? '')">
+                    <n-button type="info" dashed size="tiny" v-if="projectUrl" @click="goTo(projectUrl ?? '')">
                       {{ repoButtonText }}
                       <template #icon>
                         <n-icon v-html="githubIconHtml"/>
                       </template>
                     </n-button>
-                    <n-button color="#32647d" size="tiny" @click="showQR=!showQR" v-if="showQR" :class="{shaking: isShaking}">
+                    <n-button type="info" dashed size="tiny" @click="showQR=!showQR" v-if="showQR" :class="{shaking: isShaking}">
                       {{ closeDialogText }}
                       <template #icon>
                         <n-icon v-html="closeIconHtml"/>
                       </template>
                     </n-button>
-                    <n-button color="#32647d" size="tiny" @click="showQR=!showQR" v-if="!showQR">
+                    <n-button type="info" dashed size="tiny" @click="showQR=!showQR" v-if="!showQR">
                       {{ openDialogText }}
                       <template #icon>
                         <n-icon v-html="sponsorIconHtml"/>
@@ -137,25 +137,25 @@ function goTo(url: string) {
 
       <n-space v-if="!showQR" class="copyright-text-content" :size="10" :vertical="true" justify="center" align="center">
         <n-space :size="30">
-          <n-button color="#32647d" size="tiny" v-if="projectUrl" @click="goTo(projectUrl ?? '')">
+          <n-button type="info" dashed size="tiny" v-if="projectUrl" @click="goTo(projectUrl ?? '')">
             {{ repoButtonText }}
             <template #icon>
               <n-icon v-html="githubIconHtml"/>
             </template>
           </n-button>
-          <n-button color="#32647d" size="tiny" @click="showQR=!showQR" v-if="showQR" :class="{shaking: isShaking}">
+          <n-button type="info" dashed size="tiny" @click="showQR=!showQR" v-if="showQR" :class="{shaking: isShaking}">
             {{ closeDialogText }}
             <template #icon>
               <n-icon v-html="closeIconHtml"/>
             </template>
           </n-button>
-          <n-button color="#32647d" size="tiny" @click="goTo(bilibiliUrl ?? ``)" v-if="bilibiliUrl">
+          <n-button type="info" dashed size="tiny" @click="goTo(bilibiliUrl ?? ``)" v-if="bilibiliUrl">
             {{ bilibiliText }}
             <template #icon>
               <n-icon v-html="bilibiliHtml"/>
             </template>
           </n-button>
-          <n-button color="#32647d" size="tiny" @click="showQR=!showQR" v-if="!showQR && qrUrl">
+          <n-button type="info" dashed size="tiny" @click="showQR=!showQR" v-if="!showQR && qrUrl">
             {{ openDialogText }}
             <template #icon>
               <n-icon v-html="sponsorIconHtml"/>
