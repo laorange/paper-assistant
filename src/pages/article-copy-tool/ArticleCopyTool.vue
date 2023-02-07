@@ -9,6 +9,7 @@ import OutputFuncButtons from "./components/OutputFuncButtons.vue";
 import TextHandlerConfig from "./components/TextHandlerConfig.vue";
 import ThemeConfig from "./components/ThemeConfig.vue";
 import HelpButton from "./components/HelpButton.vue";
+import SelectionReplace from "./components/SelectionReplace.vue";
 
 const store = useStore();
 
@@ -28,15 +29,18 @@ const cols = computed<string>(() => {
   <div class="article-copy-tool">
     <header>
       <h1>论文工具</h1>
-      <n-space wrap="wrap" justify="center">
-        <n-space>
-          <HelpButton/>
-          <TextHandlerConfig/>
+      <n-space vertical>
+        <n-space wrap="wrap" justify="center">
+          <n-space>
+            <HelpButton/>
+            <TextHandlerConfig/>
+          </n-space>
+          <n-space>
+            <ThemeConfig/>
+            <UpdateLogDisplayUnit v-model:show="store.showUpdateLog"/>
+          </n-space>
         </n-space>
-        <n-space>
-          <ThemeConfig/>
-          <UpdateLogDisplayUnit v-model:show="store.showUpdateLog"/>
-        </n-space>
+        <SelectionReplace/>
       </n-space>
     </header>
 

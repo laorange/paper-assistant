@@ -2,6 +2,8 @@ import {defineStore} from "pinia";
 import {textHandlers, TextHandlerWithName} from "../assets/ts/article-copy-tool/handlers";
 import {useOsTheme} from "naive-ui";
 
+export type SelectionReplaceCouple = { from: string, to: string, active: boolean, addTime?: number }
+
 export interface Storage {
     copy: {
         handlerOptions: {
@@ -28,6 +30,10 @@ export interface State {
     copy: {
         inputText: string,
         outputText: string,
+        selection: {
+            temp: SelectionReplaceCouple,
+            couples: SelectionReplaceCouple[],
+        },
     },
 }
 
@@ -52,6 +58,10 @@ export const useStore = defineStore("store", {
             copy: {
                 inputText: "",
                 outputText: "",
+                selection: {
+                    temp: {from: "", to: "", active: false},
+                    couples: [],
+                },
             },
         };
     },
@@ -70,9 +80,18 @@ export const useStore = defineStore("store", {
     },
     actions: {
         transformText(): void {
-            this.copy.outputText = Object.values(this.textHandlerArray)
+            let outputText = this.copy.inputText;
+
+            this.copy.selection.couples.filter(c => c.active).forEach(c => {
+                console.log(outputText);
+                outputText = outputText.replaceAll(c.from, c.to);
+            });
+
+            Object.values(this.textHandlerArray)
                 .filter(textHandler => textHandler.activate)
-                .reduce((text, textHandler) => textHandler.executor(text), this.copy.inputText);
+                .forEach(textHandler=>outputText = textHandler.executor(outputText), outputText)
+
+            this.copy.outputText = outputText;
         },
     },
 });

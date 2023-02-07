@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import {computed, onBeforeUnmount, onMounted, ref} from "vue";
+import {useStore} from "../../../store/useStore";
+
+const store = useStore();
 
 const props = defineProps<{ value: string, placeholder: string, focus?: boolean, handleSelection?: boolean }>();
 const emits = defineEmits(["update:value"]);
@@ -17,7 +20,9 @@ function focus() {
 
 function getRangeString(_?: Event) {
   let selection = document.getSelection()?.toString() ?? "";
-  console.log(selection); // TODO 处理选中的文本
+  if (selection && store.copy.selection.couples.map(c => c.from).indexOf(selection) === -1) {
+    store.copy.selection.temp = {active: true, from: selection, to: ""};
+  }
 }
 
 onMounted(() => {
