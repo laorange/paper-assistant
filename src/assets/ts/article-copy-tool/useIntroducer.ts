@@ -52,6 +52,26 @@ export default function useIntroducer() {
                 intro: "查看本网站的版本迭代过程",
             },
             {
+                element: document.querySelector(".clear-input-when-leave-switch"),
+                title: `自动清空输入`,
+                intro: `（若启用该项）当离开本网页时，输入框中的内容将会被自动清空，以便返回时重新输入新内容`,
+            },
+            {
+                element: document.querySelector(".copy-output-when-leave-switch"),
+                title: `自动复制输出`,
+                intro: `（若启用该项）当离开本网页时，输出框中的内容将会被自动复制，以便在别处使用`,
+            },
+            {
+                element: document.querySelector(".auto-output-switch"),
+                title: `实时输出`,
+                intro: `若启用该项，每当修改输入框中的内容时，均会实时输出；若关闭该项，仅会在手动点击输出按钮时输出文本`,
+            },
+            {
+                element: document.querySelector(".horizontal-layout-switch"),
+                title: `布局方式`,
+                intro: `调整"输入框"与"输出框"之间的位置关系为水平/竖直`,
+            },
+            {
                 element: document.querySelector(".input-area"),
                 title: "输入框",
                 intro: `请在这里输入内容，程序将根据<strong>功能设置</strong>进行文本处理。<hr/>如果您使用电脑访问，在输入英文时，将为您检查语法✍`,
