@@ -83,7 +83,6 @@ export const useStore = defineStore("store", {
             let outputText = this.copy.inputText;
 
             this.copy.selection.couples.filter(c => c.active).forEach(c => {
-                console.log(outputText);
                 outputText = outputText.replaceAll(c.from, c.to);
             });
 

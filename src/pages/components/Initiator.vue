@@ -45,7 +45,6 @@ class ProjectInitiator {
   watchDarkMode() {
     watch(() => store.storage.darkMode, (darkMode) => {
       let classList = document.body.classList;
-      console.log("store.storage.darkMode", store.storage.darkMode);
       if (darkMode) classList.add("dark");
       else classList.remove("dark");
     }, {immediate: true});
@@ -70,7 +69,6 @@ class ProjectInitiator {
 
   useUpdateHook() {
     // 1.清除本地缓存 2.弹出更新日志
-    console.log(`版本更新：${this.storage?.version} → ${packageJson.version}`);
     this.storage = store.storage;
 
     let n = notification.info({
