@@ -2,7 +2,7 @@
 import useClipboard from "vue-clipboard3";
 import {useMessage} from "naive-ui";
 import {useStore} from "../../../../../store/useStore";
-import {nextTick} from "vue";
+import {computed, nextTick} from "vue";
 
 const {toClipboard} = useClipboard();
 const message = useMessage();
@@ -25,6 +25,9 @@ function clearInputText() {
   store.copy.inputText = "";
   nextTick(() => store.copy.outputText = outputTextTemp);
 }
+
+// 大前提条件：输入框有值；"实时输出: 关" 或 "输出为空"时显示输出按钮
+const showOutputButton = computed(() => store.copy.inputText && (!store.storage.copy.autoOutput || !store.copy.outputText));
 </script>
 
 <template>
@@ -33,7 +36,7 @@ function clearInputText() {
       <n-button size="large" v-show="store.copy.inputText" @click="copyInputText()" type="info">复制</n-button>
       <n-button size="large" v-show="store.copy.inputText" @click="cutInputText()" type="warning">剪切</n-button>
       <n-button size="large" v-show="store.copy.inputText" @click="clearInputText()" color="#808080">清空</n-button>
-      <n-button size="large" v-show="store.copy.inputText && !store.copy.outputText" @click="store.transformText()" type="success">输出</n-button>
+      <n-button size="large" v-show="showOutputButton" @click="store.transformText()" type="success">输出</n-button>
     </n-space>
   </div>
 </template>

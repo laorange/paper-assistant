@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import {useStore} from "../../../../../store/useStore";
 import GrammarlyEditor from "./components/GrammarlyEditor.vue";
+import {watch} from "vue";
 
 const store = useStore();
+
+watch(() => store.copy.inputText, () => {
+  if (store.storage.copy.autoOutput) store.transformText();
+});
 </script>
 
 <template>

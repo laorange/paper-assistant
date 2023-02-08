@@ -12,7 +12,6 @@ const {introduceTextHandler} = useIntroducer();
 const showConfigDrawer = ref(false);
 const refTextHandlerArray = ref<TextHandlerWithName[]>(store.textHandlerArray);
 
-watch(() => store.copy.inputText, store.transformText);
 watch(() => refTextHandlerArray.value, (ths) => {
   let handlerOptions: typeof store.storage.copy.handlerOptions = {};
   ths.map((th, index) => handlerOptions[th.handlerName] = {order: index, activate: th.activate});
