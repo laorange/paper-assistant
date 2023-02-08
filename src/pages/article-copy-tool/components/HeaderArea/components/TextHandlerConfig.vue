@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {textHandlers, TextHandlerWithName} from "../../../assets/ts/article-copy-tool/handlers";
+import {textHandlers, TextHandlerWithName} from "../../../../../assets/ts/article-copy-tool/handlers";
 import {ref, watch} from "vue";
-import {useStore} from "../../../store/useStore";
+import {useStore} from "../../../../../store/useStore";
 import Draggable from "vuedraggable";
 import {SettingsSharp, HelpCircle} from "@vicons/ionicons5";
-import useIntroducer from "../../../assets/ts/article-copy-tool/useIntroducer";
+import useIntroducer from "../../../../../assets/ts/article-copy-tool/useIntroducer";
 
 const store = useStore();
 const {introduceTextHandler} = useIntroducer();

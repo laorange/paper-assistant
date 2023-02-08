@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed} from "vue";
-import UpdatedLogs from "../../assets/UpdatedLogs.md";
+import UpdatedLogs from "../../../../../assets/UpdatedLogs.md";
 import {AnalyticsOutline} from "@vicons/ionicons5";
 
 const props = defineProps<{ show: boolean }>();

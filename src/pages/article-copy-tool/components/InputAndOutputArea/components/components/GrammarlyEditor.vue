@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {GrammarlyEditorPlugin} from "@grammarly/editor-sdk-vue";
 import {computed} from "vue";
-import TextInput from "../article-copy-tool/components/TextInput.vue";
+import TextInput from "./TextInput.vue";
 
 const props = defineProps<{ value: string, placeholder: string, focus?: boolean, handleSelection?: boolean }>();
 const emits = defineEmits(["update:value"]);

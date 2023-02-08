@@ -6,7 +6,7 @@ import packageJson from "../../../package.json";
 import {useNotification, NButton} from "naive-ui";
 import useIntroducer from "../../assets/ts/article-copy-tool/useIntroducer";
 import axios from "axios";
-import MarkdownParser from "./MarkdownParser.vue";
+import MarkdownParser from "../article-copy-tool/components/InputAndOutputArea/components/components/MarkdownParser.vue";
 
 const store = useStore();
 const storage = useStorage();

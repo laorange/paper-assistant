@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {useStore} from "../../../store/useStore";
-import TextInput from "./TextInput.vue";
+import {useStore} from "../../../../../store/useStore";
+import TextInput from "./components/TextInput.vue";
 
 const store = useStore();
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, onBeforeUnmount, onMounted, ref} from "vue";
-import {useStore} from "../../../store/useStore";
+import {useStore} from "../../../../../../store/useStore";
 
 const store = useStore();
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import useClipboard from "vue-clipboard3";
 import {useMessage} from "naive-ui";
-import {useStore} from "../../../store/useStore";
+import {useStore} from "../../../../../store/useStore";
 import {nextTick} from "vue";
 
 const {toClipboard} = useClipboard();

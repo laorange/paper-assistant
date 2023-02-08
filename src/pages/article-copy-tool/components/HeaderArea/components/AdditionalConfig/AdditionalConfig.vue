@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useStore} from "../../../../store/useStore";
+import {useStore} from "../../../../../../store/useStore";
 import ConfigSwitchButton from "./components/ConfigSwitchButton.vue";
 
 const store = useStore();
