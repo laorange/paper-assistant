@@ -12,8 +12,9 @@ export interface Storage {
                 order: number
             }
         },
-        singleColumn: boolean,
         autoOutput: boolean,
+        clearInputWhenLeave: boolean,
+        copyOutputWhenLeave: boolean,
     },
     version: string,
     darkMode: boolean,
@@ -43,8 +44,9 @@ export const useStore = defineStore("store", {
             storage: {
                 copy: {
                     handlerOptions: {},
-                    singleColumn: false,
-                    autoOutput: false,
+                    autoOutput: true,
+                    clearInputWhenLeave: false,
+                    copyOutputWhenLeave: true,
                 },
                 version: "",
                 darkMode: useOsTheme().value === "dark",
@@ -88,7 +90,7 @@ export const useStore = defineStore("store", {
 
             Object.values(this.textHandlerArray)
                 .filter(textHandler => textHandler.activate)
-                .forEach(textHandler=>outputText = textHandler.executor(outputText), outputText)
+                .forEach(textHandler => outputText = textHandler.executor(outputText), outputText);
 
             this.copy.outputText = outputText;
         },
