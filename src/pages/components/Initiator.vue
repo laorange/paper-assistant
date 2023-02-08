@@ -6,7 +6,7 @@ import packageJson from "../../../package.json";
 import {useNotification, NButton} from "naive-ui";
 import useIntroducer from "../../assets/ts/article-copy-tool/useIntroducer";
 import axios from "axios";
-import MarkdownParser from "./MarkdownParser.vue";
+import MarkdownParser from "../article-copy-tool/components/InputAndOutputArea/components/components/MarkdownParser.vue";
 
 const store = useStore();
 const storage = useStorage();
@@ -45,7 +45,6 @@ class ProjectInitiator {
   watchDarkMode() {
     watch(() => store.storage.darkMode, (darkMode) => {
       let classList = document.body.classList;
-      console.log("store.storage.darkMode", store.storage.darkMode);
       if (darkMode) classList.add("dark");
       else classList.remove("dark");
     }, {immediate: true});
@@ -70,7 +69,6 @@ class ProjectInitiator {
 
   useUpdateHook() {
     // 1.清除本地缓存 2.弹出更新日志
-    console.log(`版本更新：${this.storage?.version} → ${packageJson.version}`);
     this.storage = store.storage;
 
     let n = notification.info({

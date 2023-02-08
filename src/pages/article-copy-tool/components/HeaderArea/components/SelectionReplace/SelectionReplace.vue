@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {useStore} from "../../../store/useStore";
-import SelectionReplaceEditor from "./SelectionReplaceEditor.vue";
+import {useStore} from "../../../../../../store/useStore";
+import SelectionReplaceEditor from "./components/SelectionReplaceEditor.vue";
 import {watch} from "vue";
 import {HelpCircle} from "@vicons/ionicons5";
-import useIntroducer from "../../../assets/ts/article-copy-tool/useIntroducer";
+import useIntroducer from "../../../../../../assets/ts/article-copy-tool/useIntroducer";
 
 const store = useStore();
 const {introduceSelectionReplace} = useIntroducer();

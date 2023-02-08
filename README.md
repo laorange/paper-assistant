@@ -1,36 +1,28 @@
-# 论文助手
+<h1 align="center">论文工具</h1>
 
-▶️视频介绍：[[论文工具] PDF复制-智能删除空格空行](https://www.bilibili.com/video/BV1T24y1X78w/)
-
-## 在线使用
-
-[GitHub Page](https://laorange.github.io/paper-assistant/)	或	[国内镜像站(Gitee Page)](https://laorange.gitee.io/paper-assistant)
+<p align="center">
+  <a href="https://laorange.github.io/paper-assistant/">在线使用(GitHub)</a>
+  |
+  <a href="https://laorange.gitee.io/paper-assistant">在线使用(Gitee)</a>
+  |
+  <a href="https://www.bilibili.com/video/BV1T24y1X78w/">视频介绍</a>
+  |
+  <a href="/src/assets/UpdatedLogs.md">更新日志</a>
+</p>
 
 ## 功能
 
 ### (1) 文本复制工具
 
-在复制PDF中的文字时，有时会出现莫名其妙的空格、换行。
+在复制PDF中的文字时，有时会出现莫名其妙的空格、换行、全角字符。
 
 如果手动删改，工作量巨大；如果直接全文替换，可能会误删英文单词间的空格。
 
-因此，可以使用本程序，目前有以下可选功能：
-
-1. 将英文标点转换为中文标点
-2. 将中文标点转换为英文标点
-3. 全角字符转半角字符
-4. 删除重复的换行符
-5. 将换行符替换为空格
-6. 删除重复的空格
-7. 删除非英文字母间的空格
-8. 在字母与数字之间添加空格
-9. 在标点符号后添加空格
-10. 删除小数点和数字之间的空格
-11. 删除冒号和数字之间的空格
+因此，可以使用本程序去除空行空格。详细文档请在[网页](https://laorange.gitee.io/paper-assistant)中点击"使用说明"。
 
 ### (2) 英文语法检查
 
-如果①输入的是英文 ②使用电脑访问，将自动检测输入文字的语法错误（基于[Grammarly](https://developer.grammarly.com/)）
+如果您在电脑上在线使用，在输入英文时，将为您检查语法✍ (基于[Grammarly](https://developer.grammarly.com/))。
 
 ## 致开发者
 
@@ -45,5 +37,4 @@ export interface TextHandler {
 }
 ```
 
-如您有好的想法，可以在以上内容的基础上修改，欢迎在GitHub仓库上发起 `pull request`😊
-
+如您有好的想法，可以在以上内容的基础上修改，欢迎在GitHub仓库上发起 [`pull request`](https://github.com/laorange/paper-assistant/pulls)😊

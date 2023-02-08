@@ -77,7 +77,6 @@ export const textHandlers: TextHandlers = {
                 if (char > 65280 && char < 65375
                     // 对，：；·！#￥%…这样的全角字符不做转换
                     && [..."，：；·！#￥%…"].indexOf(text[i]) === -1) {
-                    console.log([..."，：；·！#￥%…"].indexOf(text[i]));
                     result += String.fromCharCode(char - 65248);
                 } else result += String.fromCharCode(text.charCodeAt(i));
             }

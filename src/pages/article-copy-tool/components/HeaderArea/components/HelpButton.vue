@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {HelpCircle} from "@vicons/ionicons5";
-import useIntroducer from "../../../assets/ts/article-copy-tool/useIntroducer";
+import useIntroducer from "../../../../../assets/ts/article-copy-tool/useIntroducer";
 
 const {introduce} = useIntroducer();
 </script>

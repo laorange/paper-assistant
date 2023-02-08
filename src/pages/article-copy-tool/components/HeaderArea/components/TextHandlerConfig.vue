@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {textHandlers, TextHandlerWithName} from "../../../assets/ts/article-copy-tool/handlers";
+import {textHandlers, TextHandlerWithName} from "../../../../../assets/ts/article-copy-tool/handlers";
 import {ref, watch} from "vue";
-import {useStore} from "../../../store/useStore";
+import {useStore} from "../../../../../store/useStore";
 import Draggable from "vuedraggable";
 import {SettingsSharp, HelpCircle} from "@vicons/ionicons5";
-import useIntroducer from "../../../assets/ts/article-copy-tool/useIntroducer";
+import useIntroducer from "../../../../../assets/ts/article-copy-tool/useIntroducer";
 
 const store = useStore();
 const {introduceTextHandler} = useIntroducer();
@@ -12,7 +12,6 @@ const {introduceTextHandler} = useIntroducer();
 const showConfigDrawer = ref(false);
 const refTextHandlerArray = ref<TextHandlerWithName[]>(store.textHandlerArray);
 
-watch(() => store.copy.inputText, store.transformText);
 watch(() => refTextHandlerArray.value, (ths) => {
   let handlerOptions: typeof store.storage.copy.handlerOptions = {};
   ths.map((th, index) => handlerOptions[th.handlerName] = {order: index, activate: th.activate});
@@ -45,7 +44,7 @@ function turnOffAllTextHandler() {
     </n-badge>
   </div>
 
-  <n-drawer v-model:show="showConfigDrawer" :height="`${Object.keys(textHandlers).length * 50 + 125}px`" placement="bottom">
+  <n-drawer v-model:show="showConfigDrawer" :height="`min(${Object.keys(textHandlers).length * 50 + 125}px, 100vh)`" placement="bottom">
     <n-drawer-content :closable="true">
       <template #header>
         <n-space align="center">

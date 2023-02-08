@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, onBeforeUnmount, onMounted, ref} from "vue";
-import {useStore} from "../../../store/useStore";
+import {useStore} from "../../../../../../store/useStore";
 
 const store = useStore();
 
@@ -18,6 +18,10 @@ function focus() {
   if (props.focus) innerInputArea?.value?.focus();
 }
 
+function focusAfterComeBack() {
+  setTimeout(focus, 100);
+}
+
 function getRangeString(_?: Event) {
   let selection = document.getSelection()?.toString() ?? "";
   if (selection && store.copy.selection.couples.map(c => c.from).indexOf(selection) === -1) {
@@ -27,10 +31,12 @@ function getRangeString(_?: Event) {
 
 onMounted(() => {
   if (props.focus) focus();
+  if (props.focus) window.addEventListener("focus", focusAfterComeBack);
   if (props.handleSelection) innerInputArea?.value?.$el?.addEventListener("select", getRangeString);
 });
 
 onBeforeUnmount(() => {
+  if (props.focus) window.removeEventListener("focus", focusAfterComeBack);
   if (props.handleSelection) innerInputArea?.value?.$el?.removeEventListener("select", getRangeString);
 });
 
