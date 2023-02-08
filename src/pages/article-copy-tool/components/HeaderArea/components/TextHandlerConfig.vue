@@ -44,7 +44,7 @@ function turnOffAllTextHandler() {
     </n-badge>
   </div>
 
-  <n-drawer v-model:show="showConfigDrawer" :height="`${Object.keys(textHandlers).length * 50 + 125}px`" placement="bottom">
+  <n-drawer v-model:show="showConfigDrawer" :height="`min(${Object.keys(textHandlers).length * 50 + 125}px, 100vh)`" placement="bottom">
     <n-drawer-content :closable="true">
       <template #header>
         <n-space align="center">
