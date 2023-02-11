@@ -8,7 +8,7 @@ import {computed} from "vue";
 import {useStore} from "./store/useStore";
 
 const projectUrl = `https://${location.href.indexOf("gitee") > -1 ? "gitee" : "github"}.com/laorange/paper-assistant`;
-const bilibiliUrl = "https://www.bilibili.com/video/BV1T24y1X78w/";
+const bilibiliUrl = "https://www.bilibili.com/video/BV1ZG4y1N7oM/";
 
 const store = useStore();
 

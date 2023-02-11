@@ -5,7 +5,7 @@
   |
   <a href="https://laorange.gitee.io/paper-assistant">在线使用(Gitee)</a>
   |
-  <a href="https://www.bilibili.com/video/BV1T24y1X78w/">视频介绍</a>
+  <a href="https://www.bilibili.com/video/BV1ZG4y1N7oM/">视频介绍</a>
   |
   <a href="/src/assets/UpdatedLogs.md">更新日志</a>
 </p>
