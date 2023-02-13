@@ -54,8 +54,8 @@ class ProjectInitiator {
     this.isNewComer = true;
     let n = notification.info({
       title: "🎉欢迎",
-      description: "😊本网站开源免费，希望能对您能有所帮助",
-      content: `若您是第一次访问本网站\n推荐您先查看"使用说明":`,
+      description: "😊本网站开源免费，希望能对您有所帮助",
+      content: `若您是第一次访问本网站，\n推荐您先查看"使用说明":`,
       action: () => h(NButton, {
             type: "info", onClick: () => {
               introduce();
