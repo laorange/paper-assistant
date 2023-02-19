@@ -40,6 +40,9 @@ onBeforeUnmount(() => {
       <ConfigSwitchButton class="clear-input-when-leave-switch" label="自动清空输入" v-model:status="store.storage.copy.clearInputWhenLeave"/>
       <ConfigSwitchButton class="copy-output-when-leave-switch" label="自动复制输出" v-model:status="store.storage.copy.copyOutputWhenLeave"/>
     </n-space>
+
+    <ConfigSwitchButton class="auto-output-switch" label="英语语法纠错" v-model:status="store.storage.copy.activeGrammarly"/>
+
     <n-space>
       <ConfigSwitchButton class="auto-output-switch" label="实时输出" v-model:status="store.storage.copy.autoOutput"/>
       <ConfigSwitchButton class="horizontal-layout-switch" label="布局方式" v-model:status="store.storage.copy.horizontalLayout"

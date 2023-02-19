@@ -3,6 +3,7 @@ import {useStore} from "../../../../../store/useStore";
 import GrammarlyEditor from "./components/GrammarlyEditor.vue";
 import {watch} from "vue";
 import InputFuncButtons from "./InputFuncButtons.vue";
+import TextInput from "./components/TextInput.vue";
 
 const store = useStore();
 
@@ -13,7 +14,8 @@ watch(() => store.copy.inputText, () => {
 
 <template>
   <div class="input-area">
-    <GrammarlyEditor v-model:value="store.copy.inputText" placeholder="在此输入文本" focus handle-selection/>
+    <GrammarlyEditor v-if="store.storage.copy.activeGrammarly" v-model:value="store.copy.inputText" placeholder="在此输入文本" focus handle-selection/>
+    <TextInput v-else placeholder="在此输入文本" v-model:value="store.copy.inputText" focus handle-selection/>
     <InputFuncButtons/>
   </div>
 </template>
