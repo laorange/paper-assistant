@@ -74,14 +74,14 @@ export const textHandlers: TextHandlers = {
                 let char = text.charCodeAt(i);
                 // 中文空格替换为英文空格
                 if (char == 12288) {
-                    result += String.fromCharCode(char - 12256);
-                    continue;
-                }
-                if (char > 65280 && char < 65375
-                    // 对，：；·！#￥%…这样的全角字符不做转换
-                    && [..."，：；·！#￥%…"].indexOf(text[i]) === -1) {
+                    result += " ";
+                } else if (char > 65280 && char < 65375
+                    // 对以下全角字符不做转换
+                    && [..."，：；·！#￥%…（）"].indexOf(text[i]) === -1) {
                     result += String.fromCharCode(char - 65248);
-                } else result += String.fromCharCode(text.charCodeAt(i));
+                } else {
+                    result += String.fromCharCode(text.charCodeAt(i));
+                }
             }
             return result;
         },
