@@ -62,6 +62,12 @@ export const textHandlers: TextHandlers = {
         },
     },
 
+    deleteReferenceBadge:{
+      description: "删除引用角标 (如: <sup>[1]</sup>, <sup>[2, 3]</sup>, <sup>[4-7]</sup>)",
+        activate: true,
+        executor: text => text.replaceAll(/\[[\d,\-\s]+]/g, "")
+    },
+
     /** 全角转半角, 参考：
      * 1. https://www.cnblogs.com/html55/p/10298569.html
      * 2. https://unicode-table.com/cn/search/?q=%E5%85%A8%E5%BD%A2%E6%95%B0%E5%AD%97 */
@@ -114,14 +120,6 @@ export const textHandlers: TextHandlers = {
             .replaceAll(/ +([^A-Za-z"':])/g, "$1"),
     },
 
-    addSpacesBetweenEnglishLettersAndNumbers: {
-        activate: true,
-        description: "在字母与数字之间添加空格",
-        executor: (text: string) => text
-            .replaceAll(/(\d)([A-Za-z])/g, "$1 $2")
-            .replaceAll(/([A-Za-z])(\d)/g, "$1 $2"),
-    },
-
     addSpaceAfterEnglishPunctuation: {
         activate: true,
         description: "在标点符号后添加空格",
@@ -134,6 +132,14 @@ export const textHandlers: TextHandlers = {
         activate: true,
         description: "删除小数点和数字之间的空格",
         executor: (text: string) => text.replaceAll(/(\.)\s+(\d)/g, "$1$2"),
+    },
+
+    addSpacesBetweenEnglishLettersAndNumbers: {
+        activate: false,
+        description: "在字母与数字之间添加空格",
+        executor: (text: string) => text
+            .replaceAll(/(\d)([A-Za-z])/g, "$1 $2")
+            .replaceAll(/([A-Za-z])(\d)/g, "$1 $2"),
     },
 
     deleteSpaceBetweenColonAndNumber: {
