@@ -1,3 +1,6 @@
+// @ts-ignore
+import pangu from "pangu";
+
 export interface TextHandler {
     activate: boolean,  // 默认是否启用
     description: string,  // 对该功能的描述
@@ -135,5 +138,11 @@ export const textHandlers: TextHandlers = {
         activate: false,
         description: "删除冒号和数字之间的空格",
         executor: (text: string) => text.replaceAll(/(:)\s+(\d)/g, "$1$2"),
+    },
+
+    addWhiteOfPanGu: {
+        description: `规范中文排版 <a href='https://sspai.com/post/37815' target='_blank'>(参考文章)</a>`,
+        activate: false,
+        executor: (text: string) => pangu.spacing(text),
     },
 };
