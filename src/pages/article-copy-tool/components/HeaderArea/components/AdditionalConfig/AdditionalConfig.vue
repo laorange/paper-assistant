@@ -13,16 +13,14 @@ const THRESHOLD_WIDTH = 600;
 const hasNotEnoughWidth = document.body.clientWidth < THRESHOLD_WIDTH;
 
 function onLeavePage() {
-  if (document.hidden) {
-    if (store.storage.copy.copyOutputWhenLeave && store.copy.outputText) {
-      toClipboard(store.copy.outputText).then(() => message.success("复制输出文本: 成功"));
-    }
-    if (store.storage.copy.clearInputWhenLeave) store.copy.inputText = "";
+  if (store.storage.copy.copyOutputWhenLeave && store.copy.outputText) {
+    toClipboard(store.copy.outputText).then(() => message.success("复制输出文本: 成功"));
   }
+  if (store.storage.copy.clearInputWhenLeave) store.copy.inputText = "";
 }
 
 onMounted(() => {
-  document.addEventListener("visibilitychange", onLeavePage);
+  window.addEventListener("blur", onLeavePage);
 
   if (hasNotEnoughWidth) {
     store.storage.copy.horizontalLayout = false;
@@ -30,7 +28,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  document.removeEventListener("visibilitychange", onLeavePage);
+  window.removeEventListener("blur", onLeavePage);
 });
 </script>
 
