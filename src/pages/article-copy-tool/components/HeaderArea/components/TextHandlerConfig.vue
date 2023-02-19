@@ -3,7 +3,7 @@ import {textHandlers, TextHandlerWithName} from "../../../../../assets/ts/articl
 import {ref, watch} from "vue";
 import {useStore} from "../../../../../store/useStore";
 import Draggable from "vuedraggable";
-import {SettingsSharp, HelpCircle} from "@vicons/ionicons5";
+import {SettingsSharp, HelpCircle, MoveSharp} from "@vicons/ionicons5";
 import useIntroducer from "../../../../../assets/ts/article-copy-tool/useIntroducer";
 
 const store = useStore();
@@ -44,7 +44,7 @@ function turnOffAllTextHandler() {
     </n-badge>
   </div>
 
-  <n-drawer v-model:show="showConfigDrawer" :height="`min(${Object.keys(textHandlers).length * 50 + 125}px, 100vh)`" placement="bottom">
+  <n-drawer v-model:show="showConfigDrawer" :height="`min(${Object.keys(textHandlers).length * 50 + 135}px, 100vh)`" placement="bottom">
     <n-drawer-content :closable="true">
       <template #header>
         <n-space align="center">
@@ -63,10 +63,13 @@ function turnOffAllTextHandler() {
           <n-space style="height: 100%" :vertical="true" justify="center" align="end" :size="2">
             <Draggable v-model="refTextHandlerArray" item-key="handlerName">
               <template #item="{element}">
-                <div class="text-handler-card" @click="element.activate = !element.activate">
-                  <n-space :size="10" justify="start">
-                    <n-switch :value="element.activate"/>
-                    <div> {{ element.description }}</div>
+                <div class="text-handler-card" :class="{active: element.activate}">
+                  <n-icon :size="16" style="margin-right: 10px">
+                    <MoveSharp/>
+                  </n-icon>
+                  <n-space :size="10" justify="start" align="center">
+                    <n-switch v-model:value="element.activate"/>
+                    <div v-html="element.description"/>
                   </n-space>
                 </div>
               </template>
@@ -86,9 +89,15 @@ function turnOffAllTextHandler() {
 
 <style scoped>
 .text-handler-card {
-  border: #efefef solid 1px;
+  border: #808080 dashed 1px;
   margin: 5px;
-  padding: 10px 25px;
+  padding: 10px;
   cursor: move;
+  display: flex;
+  align-items: center;
+}
+
+.text-handler-card.active {
+  border: green solid 1px;
 }
 </style>
