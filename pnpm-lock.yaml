@@ -8,6 +8,7 @@ specifiers:
   intro.js: ^6.0.0
   markdown-it: ^13.0.1
   naive-ui: ^2.32.1
+  pangu: ^4.0.7
   pinia: ^2.0.28
   rollup: ^3.6.0
   sass: ^1.58.0
@@ -28,6 +29,7 @@ dependencies:
   axios: 1.3.2
   intro.js: 6.0.0
   markdown-it: 13.0.1
+  pangu: 4.0.7
   pinia: 2.0.28_mgnvym7yiazkylwwogi5r767ue
   vue: 3.2.45
   vue-clipboard3: 2.0.0
@@ -1048,6 +1050,11 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /pangu/4.0.7:
+    resolution: {integrity: sha512-weZKJIwwy5gjt4STGVUH9bix3BGk7wZ2ahtIypwe3e/mllsrIZIvtfLx1dPX56GcpZFOCFKmeqI1qVuB9enRzA==}
+    hasBin: true
+    dev: false
 
   /path-key/3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}

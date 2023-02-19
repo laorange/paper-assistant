@@ -13,16 +13,14 @@ const THRESHOLD_WIDTH = 600;
 const hasNotEnoughWidth = document.body.clientWidth < THRESHOLD_WIDTH;
 
 function onLeavePage() {
-  if (document.hidden) {
-    if (store.storage.copy.copyOutputWhenLeave && store.copy.outputText) {
-      toClipboard(store.copy.outputText).then(() => message.success("复制输出文本: 成功"));
-    }
-    if (store.storage.copy.clearInputWhenLeave) store.copy.inputText = "";
+  if (store.storage.copy.copyOutputWhenLeave && store.copy.outputText) {
+    toClipboard(store.copy.outputText).then(() => message.success("复制输出文本: 成功"));
   }
+  if (store.storage.copy.clearInputWhenLeave) store.copy.inputText = "";
 }
 
 onMounted(() => {
-  document.addEventListener("visibilitychange", onLeavePage);
+  window.addEventListener("blur", onLeavePage);
 
   if (hasNotEnoughWidth) {
     store.storage.copy.horizontalLayout = false;
@@ -30,7 +28,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  document.removeEventListener("visibilitychange", onLeavePage);
+  window.removeEventListener("blur", onLeavePage);
 });
 </script>
 
@@ -40,6 +38,9 @@ onBeforeUnmount(() => {
       <ConfigSwitchButton class="clear-input-when-leave-switch" label="自动清空输入" v-model:status="store.storage.copy.clearInputWhenLeave"/>
       <ConfigSwitchButton class="copy-output-when-leave-switch" label="自动复制输出" v-model:status="store.storage.copy.copyOutputWhenLeave"/>
     </n-space>
+
+    <ConfigSwitchButton class="auto-output-switch" label="英语语法纠错" v-model:status="store.storage.copy.activeGrammarly"/>
+
     <n-space>
       <ConfigSwitchButton class="auto-output-switch" label="实时输出" v-model:status="store.storage.copy.autoOutput"/>
       <ConfigSwitchButton class="horizontal-layout-switch" label="布局方式" v-model:status="store.storage.copy.horizontalLayout"

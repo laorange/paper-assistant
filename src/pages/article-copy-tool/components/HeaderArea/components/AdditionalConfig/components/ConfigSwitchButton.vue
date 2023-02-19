@@ -17,6 +17,7 @@ const statusString = computed(() => statusLocal.value ? props.trueLabel : props.
 <template>
   <n-button @click="statusLocal = !statusLocal"
             tertiary
+            size="small"
             :disabled="!!disabled"
             :type="statusLocal ? `primary` : `default`">
     {{ label }}：{{ statusString }}

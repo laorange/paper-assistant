@@ -1,3 +1,19 @@
+### v1.2.0 (2023-02-19)
+
+新增：启用/禁用"语法检查"的状态按钮
+
+新增：规范中文排版 [(#7)](https://github.com/laorange/paper-assistant/issues/7)
+
+新增：删除引用角标 (如: <sup>[1]</sup>, <sup>[2, 3]</sup>, <sup>[4-7]</sup>)
+
+优化：自动复制、自动清空的触发机制
+
+调整：功能按钮的样式 [(来自评论区)](https://www.bilibili.com/video/BV1ZG4y1N7oM/#reply152210013200)
+
+调整：将全角括号从全角字符集合中移出 [(#8)](https://github.com/laorange/paper-assistant/issues/8)
+
+调整：“标点符号后添加空格”功能效果 [(#8)](https://github.com/laorange/paper-assistant/issues/8#issuecomment-1432508145)
+
 ### v1.1.0 (2023-02-08)
 
 新增：自动清空输入、复制输出的可选功能

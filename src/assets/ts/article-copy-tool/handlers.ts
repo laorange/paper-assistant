@@ -1,3 +1,6 @@
+// @ts-ignore
+import pangu from "pangu";
+
 export interface TextHandler {
     activate: boolean,  // 默认是否启用
     description: string,  // 对该功能的描述
@@ -59,6 +62,12 @@ export const textHandlers: TextHandlers = {
         },
     },
 
+    deleteReferenceBadge:{
+      description: "删除引用角标 (如: <sup>[1]</sup>, <sup>[2, 3]</sup>, <sup>[4-7]</sup>)",
+        activate: true,
+        executor: text => text.replaceAll(/\[[\d,\-\s]+]/g, "")
+    },
+
     /** 全角转半角, 参考：
      * 1. https://www.cnblogs.com/html55/p/10298569.html
      * 2. https://unicode-table.com/cn/search/?q=%E5%85%A8%E5%BD%A2%E6%95%B0%E5%AD%97 */
@@ -71,14 +80,14 @@ export const textHandlers: TextHandlers = {
                 let char = text.charCodeAt(i);
                 // 中文空格替换为英文空格
                 if (char == 12288) {
-                    result += String.fromCharCode(char - 12256);
-                    continue;
-                }
-                if (char > 65280 && char < 65375
-                    // 对，：；·！#￥%…这样的全角字符不做转换
-                    && [..."，：；·！#￥%…"].indexOf(text[i]) === -1) {
+                    result += " ";
+                } else if (char > 65280 && char < 65375
+                    // 对以下全角字符不做转换
+                    && [..."，：；·！#￥%…（）"].indexOf(text[i]) === -1) {
                     result += String.fromCharCode(char - 65248);
-                } else result += String.fromCharCode(text.charCodeAt(i));
+                } else {
+                    result += String.fromCharCode(text.charCodeAt(i));
+                }
             }
             return result;
         },
@@ -111,18 +120,12 @@ export const textHandlers: TextHandlers = {
             .replaceAll(/ +([^A-Za-z"':])/g, "$1"),
     },
 
-    addSpacesBetweenEnglishLettersAndNumbers: {
-        activate: true,
-        description: "在字母与数字之间添加空格",
-        executor: (text: string) => text
-            .replaceAll(/(\d)([A-Za-z])/g, "$1 $2")
-            .replaceAll(/([A-Za-z])(\d)/g, "$1 $2"),
-    },
-
     addSpaceAfterEnglishPunctuation: {
         activate: true,
         description: "在标点符号后添加空格",
-        executor: (text: string) => text.replaceAll(/([,.?:;)])([^,.?:;)\s])/g, "$1 $2"),
+        executor: (text: string) => text
+            .replaceAll(/([,.?:;])([^,.?:;\s])/g, "$1 $2")
+            .replaceAll(/(\))([a-zA-Z\d])/g, "$1 $2"),
     },
 
     deleteSpaceBetweenDotAndNumber: {
@@ -131,9 +134,23 @@ export const textHandlers: TextHandlers = {
         executor: (text: string) => text.replaceAll(/(\.)\s+(\d)/g, "$1$2"),
     },
 
+    addSpacesBetweenEnglishLettersAndNumbers: {
+        activate: false,
+        description: "在字母与数字之间添加空格",
+        executor: (text: string) => text
+            .replaceAll(/(\d)([A-Za-z])/g, "$1 $2")
+            .replaceAll(/([A-Za-z])(\d)/g, "$1 $2"),
+    },
+
     deleteSpaceBetweenColonAndNumber: {
         activate: false,
         description: "删除冒号和数字之间的空格",
         executor: (text: string) => text.replaceAll(/(:)\s+(\d)/g, "$1$2"),
+    },
+
+    addWhiteOfPanGu: {
+        description: `规范中文排版 <a href='https://sspai.com/post/37815' target='_blank'>(参考文章)</a>`,
+        activate: false,
+        executor: (text: string) => pangu.spacing(text),
     },
 };
