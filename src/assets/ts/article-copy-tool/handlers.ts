@@ -125,7 +125,9 @@ export const textHandlers: TextHandlers = {
     addSpaceAfterEnglishPunctuation: {
         activate: true,
         description: "在标点符号后添加空格",
-        executor: (text: string) => text.replaceAll(/([,.?:;)])([^,.?:;)\s])/g, "$1 $2"),
+        executor: (text: string) => text
+            .replaceAll(/([,.?:;])([^,.?:;\s])/g, "$1 $2")
+            .replaceAll(/(\))([a-zA-Z\d])/g, "$1 $2"),
     },
 
     deleteSpaceBetweenDotAndNumber: {
