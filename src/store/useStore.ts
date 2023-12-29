@@ -72,16 +72,21 @@ export const useStore = defineStore("store", {
         };
     },
     getters: {
-        textHandlerArray(): TextHandlerWithName[] {
-            return Object.entries(textHandlers).map(([handlerName, handler], index) => {
-                return {
-                    handlerName: handlerName,
-                    handler: {...handler, activate: this.storage.copy.handlerOptions[handlerName]?.activate ?? handler.activate},
-                    order: this.storage.copy.handlerOptions[handlerName]?.order ?? Object.keys(textHandlers).length + index,
-                };
-            }).sort((a, b) => a.order - b.order).map(data => {
-                return {...data.handler, handlerName: data.handlerName};
-            });
+        textHandlerArray() {
+            return (textType = textHandlers): TextHandlerWithName[] => {
+                return Object.entries(textType).map(([handlerName, handler], index) => {
+                    return {
+                        handlerName: handlerName,
+                        handler: {...handler, activate: this.storage.copy.handlerOptions[handlerName]?.activate ?? handler.activate},
+                        order: this.storage.copy.handlerOptions[handlerName]?.order ?? (() => {
+                                return textType[handlerName].order?? Object.keys(textHandlers).length + index
+                        })()
+
+                    };
+                }).sort((a, b) => a.order - b.order).map(data => {
+                    return {...data.handler, handlerName: data.handlerName};
+                });
+            };
         },
     },
     actions: {

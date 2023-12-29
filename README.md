@@ -1,4 +1,4 @@
-<h1 align="center">论文工具</h1>
+<h1 align="center">📝论文工具</h1>
 
 <p align="center">
   <a href="https://laorange.github.io/paper-assistant/" target="_blank">在线使用(GitHub)</a>
@@ -16,15 +16,17 @@
 
 #### (1) 文本复制工具
 
-在复制PDF中的文字时，有时会出现莫名其妙的空格、换行、全角字符或乱码。
+😣在复制PDF中的文字时，有时会出现莫名其妙的空格、换行、全角字符或乱码。
 
-如果手动删改，工作量巨大；如果直接全文替换，可能会误删英文单词间的空格。
+😫如果手动删改，工作量巨大；如果直接全文替换，可能会误删英文单词间的空格。
 
-因此，可以使用本程序去除空行空格。详细文档请在[网页](https://laorange.gitee.io/paper-assistant)中点击"使用说明"。
+💡开发这个项目正是为了解决这些问题。
+
+🚩如何使用？可直接[在线使用](https://laorange.gitee.io/paper-assistant)后点击"使用说明"，或前往B站查看[视频介绍](https://www.bilibili.com/video/BV1ZG4y1N7oM/)。
 
 #### (2) 英文语法检查
 
-如果您在电脑上在线使用，在输入英文时，将为您检查语法✍ (基于[Grammarly](https://developer.grammarly.com/))。
+✍如果您在电脑上在线使用，在输入英文时，将为您检查语法 (基于[Grammarly](https://developer.grammarly.com/))。
 
 ## Q&A
 
@@ -70,4 +72,8 @@ export interface TextHandler {
 }
 ```
 
-若您有好的想法，可以在以上内容的基础上修改，欢迎在GitHub仓库上发起 [`pull request`](https://github.com/laorange/paper-assistant/pulls)😊
+😄若您有好的想法，可以在以上内容的基础上修改。欢迎在GitHub仓库上发起 [`pull request`](https://github.com/laorange/paper-assistant/pulls)😊
+
+🥳若您觉得本项目还不错，可以在页面右上角为本项目点上一颗⭐~
+
+<div align="center"><img src="https://api.star-history.com/svg?repos=laorange/paper-assistant&type=Date" alt="Star History Chart" /></div>

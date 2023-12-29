@@ -10,7 +10,27 @@ const store = useStore();
 const {introduceTextHandler} = useIntroducer();
 
 const showConfigDrawer = ref(false);
-const refTextHandlerArray = ref<TextHandlerWithName[]>(store.textHandlerArray);
+
+
+const localStorageHandlerOptions = localStorage.getItem("laorange_PA");
+
+function getTextHandlerArray() {
+  if (localStorageHandlerOptions) {
+    const TextHandlerArray = JSON.parse(JSON.stringify(textHandlers));
+    const localStorgeValue = JSON.parse(localStorageHandlerOptions);
+    const handlerOptions = localStorgeValue.value.copy.handlerOptions;
+    Object.keys(TextHandlerArray).map((handlerName) => {
+      TextHandlerArray[handlerName].activate = handlerOptions[handlerName].activate;
+      TextHandlerArray[handlerName].order = handlerOptions[handlerName].order;
+    });
+    console.log(store.storage.copy.handlerOptions);
+    return ref<TextHandlerWithName[]>(store.textHandlerArray(TextHandlerArray))
+  } else {
+    return ref<TextHandlerWithName[]>(store.textHandlerArray());
+  }
+}
+
+const refTextHandlerArray = getTextHandlerArray();
 
 watch(() => refTextHandlerArray.value, (ths) => {
   let handlerOptions: typeof store.storage.copy.handlerOptions = {};
