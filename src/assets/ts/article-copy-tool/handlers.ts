@@ -1,5 +1,6 @@
 // @ts-ignore
 import pangu from "pangu";
+import { Converter } from "opencc-js";
 
 export interface TextHandler {
     activate: boolean,  // 默认是否启用
@@ -163,10 +164,8 @@ export const textHandlers: TextHandlers = {
         description: "将简体中文转换为繁体中文",
         activate: false,
         executor: (text: string) => {
-            // @ts-ignore
-            return text.replaceAll(/[\u4e00-\u9fa5]/g, (char) => {
-                return String.fromCharCode(char.charCodeAt(0) + 0x4e00 - 0x9fa5);
-            });
+            const converter = Converter({ from: 'cn', to: 'hk' });
+            return converter(text);
         }
     }
 };
