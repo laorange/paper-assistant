@@ -159,4 +159,14 @@ export const textHandlers: TextHandlers = {
         activate: false,
         executor: (text: string) => pangu.spacing(text),
     },
+    switchSimplifiedChineseToTraditionalChinese: {
+        description: "将简体中文转换为繁体中文",
+        activate: false,
+        executor: (text: string) => {
+            // @ts-ignore
+            return text.replaceAll(/[\u4e00-\u9fa5]/g, (char) => {
+                return String.fromCharCode(char.charCodeAt(0) + 0x4e00 - 0x9fa5);
+            });
+        }
+    }
 };
