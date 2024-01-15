@@ -14,7 +14,7 @@
 
 ## 功能
 
-#### (1) 文本复制工具
+#### 文本复制工具
 
 😣在复制PDF中的文字时，有时会出现莫名其妙的空格、换行、全角字符或乱码。
 
@@ -23,10 +23,6 @@
 💡开发这个项目正是为了解决这些问题。
 
 🚩如何使用？可直接[在线使用](https://laorange.gitee.io/paper-assistant)后点击"使用说明"，或前往B站查看[视频介绍](https://www.bilibili.com/video/BV1ZG4y1N7oM/)。
-
-#### (2) 英文语法检查
-
-✍如果您在电脑上在线使用，在输入英文时，将为您检查语法 (基于[Grammarly](https://developer.grammarly.com/))。
 
 ## Q&A
 
