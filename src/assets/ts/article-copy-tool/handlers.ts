@@ -72,7 +72,11 @@ export const textHandlers: TextHandlers = {
   deleteReferenceBadge: {
     description: "删除引用角标，如: [1], [2, 3], [4-7]",
     activate: true,
-    executor: text => text.replaceAll(/\[[\d,\-\s]+]/g, ""),
+    executor: text => {
+      text = text.replaceAll(/\[[\d,\-\s]+]/g, "");
+      text = text.replaceAll(/【[\d,\-\s]+】/g, "");
+      return text;
+    },
   },
 
   /** 全角转半角, 参考：
