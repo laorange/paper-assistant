@@ -1,3 +1,11 @@
+### v1.2.1 (2024-01-23)
+
+新增：中文的繁简转化（来自[评论区](https://www.bilibili.com/video/BV1ZG4y1N7oM/?vd_source=7490b187b13c8874f7ba5e1d47db63d7#reply191768370000)）
+
+优化：删除引用角标时，支持【】(如: <sup>【1】</sup>, <sup>【2, 3】</sup>, <sup>【4-7】</sup>)
+
+调整：删除失效的Grammarly插件（Grammarly的开发者接口已于2024年1月10日废弃，详情可见其[官网公告](https://developer.grammarly.com/)）
+
 ### v1.2.0 (2023-02-19)
 
 新增：启用/禁用"语法检查"的状态按钮
