@@ -5,9 +5,13 @@
   |
   <a href="https://laorange.gitee.io/paper-assistant" target="_blank">在线使用(Gitee)</a>
   |
-  <a href="https://www.bilibili.com/video/BV1ZG4y1N7oM/" target="_blank">视频介绍</a>
-  |
+  <a href="https://github.com/swjqq/utools-paper-assistant" target="_blank">uTools插件</a><a href="https://github.com/swjqq" target="_blank">(@swjqq)</a>
+</p>
+
+<p align="center">
   <a href="/src/assets/UpdatedLogs.md" target="_blank">更新日志</a>
+  |
+  <a href="https://www.bilibili.com/video/BV1ZG4y1N7oM/" target="_blank">视频介绍</a>
   |
   <a href="http://qny.quoi.top/img/sponsor-qr.jpg" target="_blank">鼓励作者</a>
 </p>
