@@ -41,8 +41,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
+      - name: Update lockfile
         run: pnpm install --no-frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install
+
 
       # 运行构建脚本
       - name: Build
