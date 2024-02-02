@@ -3,7 +3,7 @@ name: build
 on:
   # 每当 push 到 master 分支时触发部署
   push:
-    branches: [master]
+    branches: [ master ]
   # 手动触发部署
   workflow_dispatch:
 
@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       # 运行构建脚本
       - name: Build
