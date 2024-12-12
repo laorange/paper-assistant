@@ -170,6 +170,14 @@ function goTo(url: string) {
             <span v-if="!!version && !!license">丨</span>
             <span v-if="license">Released under {{ license }}</span></div>
           <div v-if="author">Copyright © {{ year }} {{ author }}</div>
+          <div>
+            <a
+                href="https://beian.miit.gov.cn"
+                target="_blank"
+                class="whitespace-nowrap"
+            >蜀ICP备2021026507号-5</a
+            >
+          </div>
         </n-space>
       </n-space>
     </div>
