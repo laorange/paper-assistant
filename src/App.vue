@@ -6,6 +6,7 @@ import ArticleCopyTool from "./pages/article-copy-tool/ArticleCopyTool.vue";
 import {darkTheme} from "naive-ui";
 import {computed} from "vue";
 import {useStore} from "./store/useStore";
+import GoogleAds from "./pages/components/googleAds.vue";
 
 const projectUrl = `https://${location.href.indexOf("gitee") > -1 ? "gitee" : "github"}.com/laorange/paper-assistant`;
 const bilibiliUrl = "https://www.bilibili.com/video/BV1ZG4y1N7oM/";
@@ -21,6 +22,7 @@ const theme = computed(() => store.storage.darkMode ? darkTheme : null);
       <n-notification-provider placement="top-left" :max="3">
         <main>
           <ArticleCopyTool/>
+          <GoogleAds/>
         </main>
 
         <CopyrightFooter :project-url="projectUrl" :version="packageJson.version"
