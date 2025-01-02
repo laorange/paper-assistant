@@ -1,14 +1,4 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-
-// 初始化广告的逻辑
-onMounted(() => {
-  try {
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
-  } catch (e) {
-    console.error("AdSense 加载错误:", e);
-  }
-});
 </script>
 
 <template>
