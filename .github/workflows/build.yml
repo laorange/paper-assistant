@@ -3,7 +3,7 @@ name: build
 on:
   # 每当 push 到 master 分支时触发部署
   push:
-    branches: [ master ]
+    branches: [ master, prod ]
   # 手动触发部署
   workflow_dispatch:
 
@@ -18,13 +18,13 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 7
+          version: 9
           run_install: false
 
       - name: Get pnpm store directory
@@ -41,8 +41,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
+      - name: Update lockfile
         run: pnpm install --no-frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install
+
 
       # 运行构建脚本
       - name: Build
@@ -59,4 +62,4 @@ jobs:
           build_dir: dist
         env:
           # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
