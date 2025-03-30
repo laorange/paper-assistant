@@ -4,8 +4,9 @@ import packageJson from "../package.json";
 import Initiator from "./pages/components/Initiator.vue";
 import ArticleCopyTool from "./pages/article-copy-tool/ArticleCopyTool.vue";
 import {darkTheme} from "naive-ui";
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import {useStore} from "./store/useStore";
+import JumpLink from "./pages/components/JumpLink.vue";
 
 const projectUrl = `https://${location.href.indexOf("gitee") > -1 ? "gitee" : "github"}.com/laorange/paper-assistant`;
 const bilibiliUrl = "https://www.bilibili.com/video/BV1ZG4y1N7oM/";
@@ -13,12 +14,18 @@ const bilibiliUrl = "https://www.bilibili.com/video/BV1ZG4y1N7oM/";
 const store = useStore();
 
 const theme = computed(() => store.storage.darkMode ? darkTheme : null);
+
+const showNoticeBanner = ref(true);
 </script>
 
 <template>
   <n-config-provider :theme="theme">
     <n-message-provider>
       <n-notification-provider placement="top-left" :max="3">
+        <header v-if="showNoticeBanner">
+          <jump-link v-model:showNoticeBanner="showNoticeBanner" />
+        </header>
+
         <main>
           <ArticleCopyTool/>
         </main>
@@ -40,7 +47,7 @@ const theme = computed(() => store.storage.darkMode ? darkTheme : null);
 <style lang="scss">
 main {
   margin: 20px 10vw;
-  min-height: calc(90vh - 130px);
+  min-height: calc(85vh - 130px);
 }
 
 .introjs-tooltip {

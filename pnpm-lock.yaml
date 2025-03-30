@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@vicons/material':
+        specifier: ^0.13.0
+        version: 0.13.0
+      '@vicons/utils':
+        specifier: ^0.1.4
+        version: 0.1.4(vue@3.2.45)
       axios:
         specifier: ^1.3.2
         version: 1.3.2
@@ -47,7 +53,7 @@ importers:
         version: 0.12.0
       '@vitejs/plugin-vue':
         specifier: ^3.0.2
-        version: 3.2.0(vite@3.2.5)(vue@3.2.45)
+        version: 3.2.0(vite@3.2.5(@types/node@17.0.45)(sass@1.58.0))(vue@3.2.45)
       naive-ui:
         specifier: ^2.32.1
         version: 2.34.2(vue@3.2.45)
@@ -65,16 +71,16 @@ importers:
         version: 0.11.5(rollup@3.6.0)
       unplugin-vue-components:
         specifier: ^0.22.4
-        version: 0.22.11(rollup@3.6.0)(vue@3.2.45)
+        version: 0.22.11(@babel/parser@7.20.5)(rollup@3.6.0)(vue@3.2.45)
       vite:
         specifier: ^3.0.6
-        version: 3.2.5(sass@1.58.0)
+        version: 3.2.5(@types/node@17.0.45)(sass@1.58.0)
       vite-plugin-singlefile:
         specifier: ^0.13.2
-        version: 0.13.2(rollup@3.6.0)(vite@3.2.5)
+        version: 0.13.2(rollup@3.6.0)(vite@3.2.5(@types/node@17.0.45)(sass@1.58.0))
       vite-plugin-vue-markdown:
         specifier: ^0.22.2
-        version: 0.22.2(rollup@3.6.0)(vite@3.2.5)
+        version: 0.22.2(rollup@3.6.0)(vite@3.2.5(@types/node@17.0.45)(sass@1.58.0))
       vue-tsc:
         specifier: ^0.39.5
         version: 0.39.5(typescript@4.9.3)
@@ -180,6 +186,9 @@ packages:
   '@types/mdurl@1.0.2':
     resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
 
+  '@types/node@14.14.45':
+    resolution: {integrity: sha512-DssMqTV9UnnoxDWu959sDLZzfvqCF0qDNRjaWeYSui9xkFe61kKo4l1TWNTQONpuXEm+gLMRvdlzvNHBamzmEw==}
+
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
 
@@ -188,6 +197,14 @@ packages:
 
   '@vicons/ionicons5@0.12.0':
     resolution: {integrity: sha512-Iy1EUVRpX0WWxeu1VIReR1zsZLMc4fqpt223czR+Rpnrwu7pt46nbnC2ycO7ItI/uqDLJxnbcMC7FujKs9IfFA==}
+
+  '@vicons/material@0.13.0':
+    resolution: {integrity: sha512-lKVxFNprM+CaBkUH3gt6VjIeiMsKQl2zARQMwTCZruQl2vRHzyeZiKeCflWS99CEfv2JzX/6y697smxlzyxcVw==}
+
+  '@vicons/utils@0.1.4':
+    resolution: {integrity: sha512-OHI19qVNN6i+uPQ+Y3f2s0dUxwsYnOCcKBW7XOU4yXXO1aU3ZoKpblCc3+4N0qmgoJs5rWKRAaMisipqEXJwAg==}
+    peerDependencies:
+      vue: ^3.0.6
 
   '@vitejs/plugin-vue@3.2.0':
     resolution: {integrity: sha512-E0tnaL4fr+qkdCNxJ+Xd0yM31UwMkQje76fsDVBBUCoGOUPexu2VDUYHL8P4CwV+zMvWw6nlRw19OnRKmYAJpw==}
@@ -249,6 +266,9 @@ packages:
   '@vue/shared@3.2.45':
     resolution: {integrity: sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==}
 
+  '@xicons/utils@0.1.4':
+    resolution: {integrity: sha512-uXxKDLz9abr80yJC05XSTq6wlyFcdW+N/1IYJkeHjzzXVc4VQ0sEYMoMMTjAH7HQBOyOkzOB4pf5NGF72lwa8Q==}
+
   acorn@8.8.1:
     resolution: {integrity: sha512-7zFpHzhnqYKrkYdUjF1HI1bzd0VygEGX8lFk4k5zVMqHEoES+P+7TKI+EvLO9WVMJ8eekdO0aDEK044xTXwPPA==}
     engines: {node: '>=0.4.0'}
@@ -309,6 +329,9 @@ packages:
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
+
+  css-render@0.13.9:
+    resolution: {integrity: sha512-n3C4ZH59rveBrUlAD7n0Ze9/gUMKa4dlH1C9CWKpGcIHR/xRcIVXzBGy1iw8WWq2ySmn2/ZqOpySQNAK5Pb6sw==}
 
   css-render@0.15.11:
     resolution: {integrity: sha512-hnLrHPUndVUTF5nmNPRey6hpixK02IPUGdEsm2xRjvJuewToyrVFx9Nmai8rgfVzhTFo5SJVh2PHAtzaIV8JKw==}
@@ -1019,6 +1042,7 @@ snapshots:
       '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    optionalDependencies:
       rollup: 3.6.0
 
   '@types/estree@1.0.0': {}
@@ -1040,15 +1064,24 @@ snapshots:
 
   '@types/mdurl@1.0.2': {}
 
+  '@types/node@14.14.45': {}
+
   '@types/node@17.0.45': {}
 
   '@types/opencc-js@1.0.3': {}
 
   '@vicons/ionicons5@0.12.0': {}
 
-  '@vitejs/plugin-vue@3.2.0(vite@3.2.5)(vue@3.2.45)':
+  '@vicons/material@0.13.0': {}
+
+  '@vicons/utils@0.1.4(vue@3.2.45)':
     dependencies:
-      vite: 3.2.5(sass@1.58.0)
+      '@xicons/utils': 0.1.4
+      vue: 3.2.45
+
+  '@vitejs/plugin-vue@3.2.0(vite@3.2.5(@types/node@17.0.45)(sass@1.58.0))(vue@3.2.45)':
+    dependencies:
+      vite: 3.2.5(@types/node@17.0.45)(sass@1.58.0)
       vue: 3.2.45
 
   '@volar/code-gen@0.39.5':
@@ -1146,6 +1179,10 @@ snapshots:
 
   '@vue/shared@3.2.45': {}
 
+  '@xicons/utils@0.1.4':
+    dependencies:
+      css-render: 0.13.9
+
   acorn@8.8.1: {}
 
   anymatch@3.1.3:
@@ -1216,6 +1253,12 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  css-render@0.13.9:
+    dependencies:
+      '@emotion/hash': 0.8.0
+      '@types/node': 14.14.45
+      csstype: 3.0.11
 
   css-render@0.15.11:
     dependencies:
@@ -1524,9 +1567,10 @@ snapshots:
   pinia@2.0.28(typescript@4.9.3)(vue@3.2.45):
     dependencies:
       '@vue/devtools-api': 6.4.5
-      typescript: 4.9.3
       vue: 3.2.45
       vue-demi: 0.13.11(vue@3.2.45)
+    optionalDependencies:
+      typescript: 4.9.3
 
   pkg-types@1.0.1:
     dependencies:
@@ -1656,7 +1700,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  unplugin-vue-components@0.22.11(rollup@3.6.0)(vue@3.2.45):
+  unplugin-vue-components@0.22.11(@babel/parser@7.20.5)(rollup@3.6.0)(vue@3.2.45):
     dependencies:
       '@antfu/utils': 0.7.2
       '@rollup/pluginutils': 5.0.2(rollup@3.6.0)
@@ -1669,6 +1713,8 @@ snapshots:
       resolve: 1.22.1
       unplugin: 1.0.0
       vue: 3.2.45
+    optionalDependencies:
+      '@babel/parser': 7.20.5
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -1685,13 +1731,13 @@ snapshots:
       evtd: 0.2.4
       vue: 3.2.45
 
-  vite-plugin-singlefile@0.13.2(rollup@3.6.0)(vite@3.2.5):
+  vite-plugin-singlefile@0.13.2(rollup@3.6.0)(vite@3.2.5(@types/node@17.0.45)(sass@1.58.0)):
     dependencies:
       micromatch: 4.0.5
       rollup: 3.6.0
-      vite: 3.2.5(sass@1.58.0)
+      vite: 3.2.5(@types/node@17.0.45)(sass@1.58.0)
 
-  vite-plugin-vue-markdown@0.22.2(rollup@3.6.0)(vite@3.2.5):
+  vite-plugin-vue-markdown@0.22.2(rollup@3.6.0)(vite@3.2.5(@types/node@17.0.45)(sass@1.58.0)):
     dependencies:
       '@antfu/utils': 0.7.2
       '@mdit-vue/plugin-component': 0.11.2
@@ -1700,19 +1746,20 @@ snapshots:
       '@rollup/pluginutils': 5.0.2(rollup@3.6.0)
       '@types/markdown-it': 12.2.3
       markdown-it: 13.0.1
-      vite: 3.2.5(sass@1.58.0)
+      vite: 3.2.5(@types/node@17.0.45)(sass@1.58.0)
     transitivePeerDependencies:
       - rollup
 
-  vite@3.2.5(sass@1.58.0):
+  vite@3.2.5(@types/node@17.0.45)(sass@1.58.0):
     dependencies:
       esbuild: 0.15.18
       postcss: 8.4.19
       resolve: 1.22.1
       rollup: 2.79.1
-      sass: 1.58.0
     optionalDependencies:
+      '@types/node': 17.0.45
       fsevents: 2.3.2
+      sass: 1.58.0
 
   vooks@0.2.12(vue@3.2.45):
     dependencies:
