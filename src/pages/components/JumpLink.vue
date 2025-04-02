@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { CloseOutlined } from "@vicons/material";
-import { Icon } from "@vicons/utils";
+import {CloseOutlined} from "@vicons/material";
+import {Icon} from "@vicons/utils";
 
-const props = defineProps({
+defineProps({
   showNoticeBanner: {
     type: Boolean,
-    required: true
-  }
+    required: true,
+  },
 });
-const emit = defineEmits(['update:showNoticeBanner']);
+const emit = defineEmits(["update:showNoticeBanner"]);
 
 const closeBanner = () => {
-  emit('update:showNoticeBanner', false);
+  emit("update:showNoticeBanner", false);
 };
 </script>
 
@@ -39,7 +39,7 @@ const closeBanner = () => {
         class="close-button cursor-pointer"
         @click="closeBanner"
     >
-      <CloseOutlined />
+      <CloseOutlined/>
     </Icon>
   </div>
 </template>
@@ -48,7 +48,7 @@ const closeBanner = () => {
 .upgrade-banner {
   position: relative; /* 以便内部绝对定位 */
   width: 100%;
-  padding: 16px;
+  padding: 2px 16px;
   background: linear-gradient(270.11deg, rgba(68, 47, 253, .8) -2.45%, rgba(0, 85, 242, .8) 38.81%, rgba(15, 135, 255, .8) 75.63%, #3de6f5 108.2%);
   box-sizing: border-box;
   border-bottom: 1px solid #ddd;
@@ -56,6 +56,7 @@ const closeBanner = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 12px;
 }
 
 /* 将文本和按钮放在一起，居中显示 */
@@ -68,15 +69,16 @@ const closeBanner = () => {
 /* 文字样式 */
 .banner-text {
   margin: 0;
-  font-size: 16px;
   line-height: 1.6;
   color: #fff;
   white-space: nowrap;
+  font-size: 12px;
 }
 
 /* 按钮容器 */
 .banner-buttons {
   margin-left: 16px;
+  font-size: 12px;
 }
 
 /* 按钮样式 */
