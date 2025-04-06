@@ -12,6 +12,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vicons/material": "^0.13.0",
+    "@vicons/utils": "^0.1.4",
     "axios": "^1.3.2",
     "intro.js": "^6.0.0",
     "markdown-it": "^13.0.1",
@@ -24,9 +26,9 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
+    "@types/opencc-js": "^1.0.3",
     "@vicons/ionicons5": "^0.12.0",
     "@vitejs/plugin-vue": "^3.0.2",
-    "@types/opencc-js": "^1.0.3",
     "naive-ui": "^2.32.1",
     "rollup": "^3.6.0",
     "sass": "^1.58.0",
